@@ -1,0 +1,326 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #fff;
+    display: flex;
+    flex-direction: row;  /* Faz o layout ficar lado a lado */
+    height: 100vh; /* Garantir que a altura ocupe toda a tela */
+    margin: 0;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;  /* Fixando a barra lateral à esquerda */
+    height: 100%; /* Garantir que a barra lateral ocupe toda a altura da tela */
+}
+
+.sidebar a:hover {
+        background-color: #555; /* Cor de fundo ao passar o mouse */
+        color: #ddd; /* Cor do texto ao passar o mouse */
+    }
+
+.profile-section {
+    text-align: center;
+}
+
+.profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.role {
+    color: #888;
+    font-size: 0.9em;
+}
+
+nav ul {
+    list-style: none;
+    margin-top: 20px;
+}
+
+nav ul li a {
+    color: aliceblue;
+	margin: 5px 0;
+	background-color: #070707;
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+nav ul li a:hover {
+    background-color: #0D0D0D;
+    color: #FFD700; /* Cor da fonte em hover */
+    transform: translateY(-3px);
+}
+
+
+.user-info {
+    text-align: center;
+    font-size: 0.9em;
+    color: #aaa;
+}
+
+.main-content {
+    margin-left: 200px; /* Ajusta para o espaço da sidebar */
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #1e1e1e;
+    height: 100vh; /* Garantir que o conteúdo ocupe toda a altura disponível */
+    flex-grow: 1; /* Aumenta o tamanho da main-content conforme necessário */
+    padding-bottom: 60px; /* Espaço para o rodapé */
+}
+
+header h1 {
+    margin-bottom: 20px;
+}
+
+.cards {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.card {
+    flex: 1;
+    background-color: #444;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.card h2 {
+    font-size: 2em;
+    margin-bottom: 5px;
+}
+
+.card p {
+    color: #bbb;
+}
+
+input[type="text"] {
+            padding: 8px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background-color: #333;
+            color: white;
+        }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #444;
+	border-bottom: 1px solid #444;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #1c1c1c;
+}
+
+footer {/*Rodapé onde fica "2024 Atalias Lô-Amí"*/
+    background-color: #1c1c1c;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-links a {
+    color: #bbb;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+.submenu {
+    margin-left: 15px;
+    list-style-type: circle;
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.fab {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fab:hover {
+    background-color: #d32f2f;
+}
+
+.delete-btn {
+background-color: red;
+color: white;
+border: none;
+padding: 8px 16px;
+border-radius: 4px;
+margin-left: 5px;
+margin-top: 5px;
+cursor: pointer;
+}
+
+.delete-btn:hover {
+background-color: darkred;
+}
+
+button {
+background-color: #0066cc;
+color: white;
+padding: 8px 12px;
+margin-left: 5px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+}
+button:hover {
+background-color: #005bb5;
+}
+
+select {
+padding: 8px;
+border: 1px solid #444;
+border-radius: 4px;
+background-color: #333; /* Cor de fundo escura */
+color: white; /* Cor do texto */
+appearance: none; /* Remove a seta padrão do navegador */
+}
+
+select::-ms-expand {
+display: none;
+}
+
+.new-task-section select {
+background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='10' viewBox='0 0 14 10'><path fill='white' d='M7 10L0 0h14z'/></svg>");
+background-repeat: no-repeat;
+background-position: right 10px center;
+background-size: 12px;
+margin-bottom: 20px;
+}
+
+.profile-section img {
+     width: 80px;
+     height: 80px;
+     border-radius: 50%;
+     margin-bottom: 10px;
+}
+
+.complete-btn {
+background-color: green;
+}
+.completed-btn {
+background-color: gray;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 0;  /* Remove o espaço reservado para a sidebar */
+        padding: 10px;
+        height: auto;  /* Ajusta a altura para o conteúdo se expandir conforme necessário */
+    }
+
+     .new-task-section {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .new-task-section input, 
+    .new-task-section select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #444;
+        border-radius: 4px;
+        background-color: #333;
+        color: white;
+        box-sizing: border-box;
+    }
+
+    /* Remover o margin-bottom apenas no mobile */
+    .new-task-section select {
+        margin-bottom: 0; /* Remove o margin-bottom no mobile */
+    }
+
+    .new-task-section button {
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 12px;
+        font-size: 1em;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+
+    .card {
+        padding: 10px;
+    }
+}
+
+.menu-toggle {
+    display: none; /* Oculta o botão por padrão */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none; /* Oculta a sidebar em telas menores */
+    }
+}

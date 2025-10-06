@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Pendências - KSS MOTOS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <div class="sidebar">
+        <div class="profile-section">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5yDN4W9x2xfLjRciAEW4qer6Mf7hyHarJ7Q&s" alt="Foto de perfil" class="profile-pic">
+            <h3>Painel do</h3>
+            <p class="role">Designer</p>
+        </div>
+        <nav>
+    <ul>
+        <li><a href="https://www.instagram.com/kssmotosoficial/" target="_blank">Instagram</a></li>
+        <li><a href="https://business.facebook.com/latest/home?business_id=2388636561356669&asset_id=1844447299014054" target="_blank">Facebook Business</a></li>
+        <li><a href="javascript:void(0)" onclick="clearCompletedTasks()">Limpar Todas as Pendências</a></li>
+        <li><a href="link_para_mensagens.html" target="_blank">Mensagens recebidas</a></li>
+    </ul>
+</nav>
+        <div class="user-info">
+			<br>
+			<br>
+            <p>@ataliasloami</p>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h1>Sistema de Pendências - KSS MOTOS</h1>
+        </header>
+
+        <button class="fab" onclick="clearCompletedTasks()">🗑️</button>
+        
+
+        <!-- Entrada para nova pendência -->
+        <div class="new-task-section">
+            <input type="text" id="taskInput" placeholder="Pendência">
+            <select id="cityInput">
+                <option value="" disabled selected>Cidade</option>
+				<option value="Geral">Geral</option>
+				<option value="Amarante">Amarante</option>
+				<option value="Sítio Novo">Sítio Novo</option>
+				<option value="Grajaú">Grajaú</option>
+                <option value="Barra do Corda">Barra do Corda</option>
+                <option value="Balsas">Balsas</option>
+                <option value="Presidente Dutra">Presidente Dutra</option>
+				<option value="Pedreiras">Pedreiras</option>
+				<option value="Codó">Codó</option>
+				<option value="Bacabal">Bacabal</option>
+                <!-- Adicione outras cidades conforme necessário -->
+            </select>
+            <input type="text" id="requesterInput" placeholder="Solicitante">
+            <button onclick="addTask()">Adicionar Pendência</button>
+        </div>
+
+        <!-- Cards de status -->
+        <div class="cards">
+            <div class="card" id="pending-count">
+                <h2>0</h2>
+                <p>Pendências</p>
+            </div>
+            <div class="card" id="completed-count">
+                <h2>0</h2>
+                <p>Concluídas</p>
+            </div>
+            <div class="card">
+                <h2><span id="time-display"></span></h2>
+                <p>Hora atual:</p>
+            </div>
+        </div>
+
+        <!-- Lista de pendências -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Pendência</th>
+                    <th>Cidade</th>
+                    <th>Solicitante</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody id="taskList">
+                <!-- Itens das pendências são adicionados aqui -->
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <p>2024 © Atalias Lô-Amí - Github</p>
+        <div class="footer-links">
+            <a href="#">Support</a> | <a href="#">Purchase</a>
+        </div>
+    </footer>
+
+    <script>
+        const taskList = document.getElementById("taskList");
+        const taskInput = document.getElementById("taskInput");
+        const cityInput = document.getElementById("cityInput");
+        const requesterInput = document.getElementById("requesterInput");
+        let pendingCount = 0;
+        let completedCount = 0;
+
+        // Carregar pendências do Local Storage
+        document.addEventListener('DOMContentLoaded', loadTasks);
+
+  function loadTasks() {
+    fetch('/tasks')
+        .then(response => response.json())
+        .then(tasks => {
+            tasks.forEach(task => {
+                if (!task.completed) {
+                    addTaskToDOM(task);
+                } else {
+                    completedCount++;
+                }
+            });
+            updateCounters();
+        })
+        .catch(err => console.error('Erro ao carregar tarefas:', err));
+}
+
+        function addTask() {
+    const taskName = taskInput.value.trim();
+    const cityName = cityInput.value.trim();
+    const requesterName = requesterInput.value.trim();
+
+    if (taskName && cityName && requesterName) {
+        const task = {
+            name: taskName,
+            city: cityName,
+            requester: requesterName,
+            completed: false
+        };
+
+        // Enviar tarefa para o servidor
+        fetch('/tasks', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(task)
+        })
+        .then(response => response.json())
+        .then(savedTask => {
+            addTaskToDOM(savedTask);
+            taskInput.value = "";
+            cityInput.value = "";
+            requesterInput.value = "";
+        })
+        .catch(err => console.error('Erro ao adicionar tarefa:', err));
+    }
+}
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Enter") {
+                addTask();
+            }
+        });
+ 
+        function toggleMenu() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('active'); // Alterna a classe 'active' na sidebar
+}
+
+        function addTaskToDOM(task) {
+        const row = document.createElement("tr");
+
+        // Colunas da tabela
+        const taskCol = document.createElement("td");
+        taskCol.textContent = task.name;
+
+        const cityCol = document.createElement("td");
+        cityCol.textContent = task.city;
+
+        const requesterCol = document.createElement("td");
+        requesterCol.textContent = task.requester;
+
+        // Botão de conclusão
+        const actionCol = document.createElement("td");
+        const completeBtn = document.createElement("button");
+        completeBtn.textContent = "Concluir";
+        completeBtn.classList.add("complete-btn");
+        completeBtn.onclick = () => toggleComplete(task, row, completeBtn);
+        
+        // Botão de exclusão
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Excluir";
+        deleteBtn.classList.add("delete-btn");
+        deleteBtn.onclick = () => deleteTask(task, row);
+
+        actionCol.appendChild(completeBtn);
+        actionCol.appendChild(deleteBtn);
+
+        row.appendChild(taskCol);
+        row.appendChild(cityCol);
+        row.appendChild(requesterCol);
+        row.appendChild(actionCol);
+        taskList.appendChild(row);
+
+        pendingCount++;
+        updateCounters();
+    }
+	
+	function deleteTask(task, row) {
+    // Enviar requisição para deletar a tarefa no servidor
+    fetch(`/tasks/${encodeURIComponent(task.name)}`, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao deletar a tarefa');
+        }
+        // Remover a pendência da tabela
+        taskList.removeChild(row);
+
+        // Atualizar contador de pendências
+        pendingCount--;
+        updateCounters();
+    })
+    .catch(err => console.error(err));
+}
+
+        function saveTaskToLocalStorage(task) {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            tasks.push(task);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        function toggleComplete(task, row, completeBtn) {
+    task.completed = true; // Marcar como concluída
+
+    // Enviar requisição para atualizar a tarefa no servidor
+    fetch(`/tasks/${encodeURIComponent(task.name)}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(task)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao atualizar a tarefa');
+        }
+        return response.json();
+    })
+    .then(updatedTask => {
+        // Remover a linha da tabela e atualizar a contagem
+        taskList.removeChild(row);
+        completedCount++;
+        pendingCount--;
+        updateCounters();
+    })
+    .catch(err => console.error(err));
+}
+
+        function updateCounters() {
+            document.getElementById("pending-count").querySelector("h2").textContent = pendingCount;
+            document.getElementById("completed-count").querySelector("h2").textContent = completedCount;
+        }
+
+        // Atualizar hora atual
+        function updateTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById("time-display").textContent = `${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        function clearCompletedTasks() {
+    // Enviar uma requisição ao servidor para limpar todas as tarefas
+    fetch('/tasks/clear-all', {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao limpar todas as tarefas');
+        }
+        return response.json(); // Se você espera algum retorno JSON
+    })
+    .then(() => {
+        // Limpa a tabela
+        taskList.innerHTML = "";
+        // Atualiza os contadores
+        pendingCount = 0;
+        completedCount = 0;
+        updateCounters(); // Atualiza os contadores no painel
+    })
+    .catch(err => console.error(err));
+}
+
+    </script>
+</body>
+</html>
