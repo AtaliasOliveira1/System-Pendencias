@@ -348,12 +348,6 @@
     "completed": true
   },
   {
-    "name": "Criar imagem: Quem for seguidor no nosso perfil do instagram e comprar produtos até (data especifica), ganhará 5% de descontos em suas compras (varejista)",
-    "city": "Geral",
-    "requester": "Rivaldo",
-    "completed": false
-  },
-  {
     "name": "Aviso de Feriado Segunda",
     "city": "Codó",
     "requester": "Daniel",
@@ -396,21 +390,105 @@
     "completed": true
   },
   {
-    "name": "Criar Wallpapers Atualizado 2025",
-    "city": "Geral",
+    "name": "Editar fotos parcerias",
+    "city": "Bacabal",
+    "requester": "Josenir",
+    "completed": true
+  },
+  {
+    "name": "Editar vídeo sorteio",
+    "city": "Açailândia",
+    "requester": "Daniel",
+    "completed": true
+  },
+  {
+    "name": "Promoção mês de outubro",
+    "city": "Açailândia",
+    "requester": "Daniel",
+    "completed": true
+  },
+  {
+    "name": "Editar video sorteio",
+    "city": "Grajaú",
+    "requester": "Ricardo",
+    "completed": true
+  },
+  {
+    "name": "Criar plaquinhas aniversariantes",
+    "city": "Grajaú",
+    "requester": "Nayana",
+    "completed": false
+  },
+  {
+    "name": "Editar foto ganhador",
+    "city": "Pedreiras",
+    "requester": "Ricardo",
+    "completed": true
+  },
+  {
+    "name": "Adesivo caixa de Sorteio",
+    "city": "Sítio Novo",
+    "requester": "Jardel",
+    "completed": false
+  },
+  {
+    "name": "Operação derruba preços",
+    "city": "Bacabal",
+    "requester": "Josenir",
+    "completed": false
+  },
+  {
+    "name": "Pneus - Operação derruba preços",
+    "city": "Bacabal",
+    "requester": "Josenir",
+    "completed": false
+  },
+  {
+    "name": "Ganhadora capacete - radio fm",
+    "city": "Presidente Dutra",
+    "requester": "Jhonata",
+    "completed": true
+  },
+  {
+    "name": "Foto ganhador capacete gow",
+    "city": "Açailândia",
+    "requester": "Daniel",
+    "completed": true
+  },
+  {
+    "name": "Foto ganhador - REvisao completa",
+    "city": "Grajaú",
+    "requester": "Ricardo",
+    "completed": true
+  },
+  {
+    "name": "Promoção de outubro",
+    "city": "Codó",
+    "requester": "Victor",
+    "completed": true
+  },
+  {
+    "name": "NOTA DE 20",
+    "city": "Pedreiras",
+    "requester": "Ricardo",
+    "completed": true
+  },
+  {
+    "name": "yetyuyuerwedsfhlsdfksldjfksldjflsjdfkjskldjfsjdfjlsjdfjskdjfjslkfjsçdlkfjaçlksdjfçalskdjfçalskdjfçlskdjfçalskjdfçlsakdjfçalskdjf",
+    "city": "Amarante",
+    "requester": "shgdhfgdf",
+    "completed": true
+  },
+  {
+    "name": "Nota de 20",
+    "city": "Pedreiras",
+    "requester": "Ricardo",
+    "completed": false
+  },
+  {
+    "name": "Criar Vídeo auncio painel led",
+    "city": "Barra do Corda",
     "requester": ".",
-    "completed": false
-  },
-  {
-    "name": "Promoção Mês de Fevereiro",
-    "city": "Pedreiras",
-    "requester": "Ricardo",
-    "completed": false
-  },
-  {
-    "name": "Sorteio",
-    "city": "Pedreiras",
-    "requester": "Ricardo",
     "completed": false
   }
 ]

@@ -8,37 +8,12 @@
 </head>
 <body>
 
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    <div class="sidebar">
-        <div class="profile-section">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5yDN4W9x2xfLjRciAEW4qer6Mf7hyHarJ7Q&s" alt="Foto de perfil" class="profile-pic">
-            <h3>Painel do</h3>
-            <p class="role">Designer</p>
-        </div>
-        <nav>
-    <ul>
-        <li><a href="https://www.instagram.com/kssmotosoficial/" target="_blank">Instagram</a></li>
-        <li><a href="https://business.facebook.com/latest/home?business_id=2388636561356669&asset_id=1844447299014054" target="_blank">Facebook Business</a></li>
-        <li><a href="javascript:void(0)" onclick="clearCompletedTasks()">Limpar Todas as Pendências</a></li>
-        <li><a href="link_para_mensagens.html" target="_blank">Mensagens recebidas</a></li>
-    </ul>
-</nav>
-        <div class="user-info">
-			<br>
-			<br>
-            <p>@ataliasloami</p>
-        </div>
-    </div>
-
     <div class="main-content">
         <header>
             <h1>Sistema de Pendências - KSS MOTOS</h1>
         </header>
 
-        <button class="fab" onclick="clearCompletedTasks()">🗑️</button>
         
-
-        <!-- Entrada para nova pendência -->
         <div class="new-task-section">
             <input type="text" id="taskInput" placeholder="Pendência">
             <select id="cityInput">
@@ -53,13 +28,14 @@
 				<option value="Pedreiras">Pedreiras</option>
 				<option value="Codó">Codó</option>
 				<option value="Bacabal">Bacabal</option>
-                <!-- Adicione outras cidades conforme necessário -->
-            </select>
+                <option value="Ceará">Ceará ITZ</option>
+                <option value="Babaçulândia">Babaçulândia ITZ</option>
+                <option value="Açailândia">Açailândia</option>
+                </select>
             <input type="text" id="requesterInput" placeholder="Solicitante">
             <button onclick="addTask()">Adicionar Pendência</button>
         </div>
 
-        <!-- Cards de status -->
         <div class="cards">
             <div class="card" id="pending-count">
                 <h2>0</h2>
@@ -75,7 +51,6 @@
             </div>
         </div>
 
-        <!-- Lista de pendências -->
         <table>
             <thead>
                 <tr>
@@ -86,8 +61,7 @@
                 </tr>
             </thead>
             <tbody id="taskList">
-                <!-- Itens das pendências são adicionados aqui -->
-            </tbody>
+                </tbody>
         </table>
     </div>
 
@@ -163,11 +137,8 @@
             }
         });
  
-        function toggleMenu() {
-    const sidebar = document.querySelector('.sidebar');
-    sidebar.classList.toggle('active'); // Alterna a classe 'active' na sidebar
-}
-
+        // A função toggleMenu() foi removida daqui
+ 
         function addTaskToDOM(task) {
         const row = document.createElement("tr");
 
