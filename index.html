@@ -4,7 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Pendências - KSS MOTOS</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"> 
+    <style>
+        /* CSS Adicional para links de anexos múltiplos */
+        .attachment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 5px; /* Espaço entre os links */
+        }
+        .attachment-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+        .attachment-link:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 
@@ -13,11 +29,9 @@
             <h1>Sistema de Pendências - KSS MOTOS</h1>
         </header>
 
-        
         <div class="new-task-section">
             <input type="text" id="taskInput" placeholder="Pendência">
             <select id="cityInput">
-                <option value="" disabled selected>Cidade</option>
 				<option value="Geral">Geral</option>
 				<option value="Amarante">Amarante</option>
 				<option value="Sítio Novo">Sítio Novo</option>
@@ -28,11 +42,13 @@
 				<option value="Pedreiras">Pedreiras</option>
 				<option value="Codó">Codó</option>
 				<option value="Bacabal">Bacabal</option>
-                <option value="Ceará">Ceará ITZ</option>
-                <option value="Babaçulândia">Babaçulândia ITZ</option>
+				<option value="Ceará & Babaçulândia">Ceará & Babaçulândia</option>
                 <option value="Açailândia">Açailândia</option>
-                </select>
+            </select>
             <input type="text" id="requesterInput" placeholder="Solicitante">
+            
+            <input type="file" id="attachmentInput" name="attachments" accept="*/*" multiple> 
+
             <button onclick="addTask()">Adicionar Pendência</button>
         </div>
 
@@ -57,185 +73,253 @@
                     <th>Pendência</th>
                     <th>Cidade</th>
                     <th>Solicitante</th>
-                    <th>Ação</th>
+                    <th>Data/Hora | Anexo(s)</th> <th>Ação</th>
                 </tr>
             </thead>
             <tbody id="taskList">
-                </tbody>
+            </tbody>
         </table>
     </div>
 
     <footer>
-        <p>2024 © Atalias Lô-Amí - Github</p>
+        <p>2025 © Atalias Lô-Amí</p>
         <div class="footer-links">
-            <a href="#">Support</a> | <a href="#">Purchase</a>
+            <a href="https://github.com/AtaliasOliveira1/System-Pendencias">Github</a>
         </div>
     </footer>
+
+    
+    <div id="attachModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeAttachModal()">&times;</span>
+            <h3>Anexar arquivo(s) à Pendência: <span id="modalTaskName"></span></h3>
+            
+            <input type="file" id="modalAttachmentInput" accept="*/*" multiple>
+            
+            <button onclick="uploadAttachment()">Anexar</button>
+            <p id="uploadStatus" style="color: green;"></p>
+        </div>
+    </div>
 
     <script>
         const taskList = document.getElementById("taskList");
         const taskInput = document.getElementById("taskInput");
         const cityInput = document.getElementById("cityInput");
         const requesterInput = document.getElementById("requesterInput");
+        const attachmentInput = document.getElementById("attachmentInput");
         let pendingCount = 0;
         let completedCount = 0;
 
-        // Carregar pendências do Local Storage
+        const attachModal = document.getElementById('attachModal');
+        const modalTaskNameSpan = document.getElementById('modalTaskName');
+        const modalAttachmentInput = document.getElementById('modalAttachmentInput');
+        const uploadStatus = document.getElementById('uploadStatus');
+        let currentTaskToAttach = null; 
+
         document.addEventListener('DOMContentLoaded', loadTasks);
 
-  function loadTasks() {
-    fetch('/tasks')
-        .then(response => response.json())
-        .then(tasks => {
-            tasks.forEach(task => {
-                if (!task.completed) {
-                    addTaskToDOM(task);
-                } else {
-                    completedCount++;
-                }
-            });
-            updateCounters();
-        })
-        .catch(err => console.error('Erro ao carregar tarefas:', err));
-}
+        function loadTasks() {
+            fetch('/tasks')
+                .then(response => response.json())
+                .then(tasks => {
+                    taskList.innerHTML = ''; 
+                    pendingCount = 0;
+                    completedCount = 0; 
 
+                    tasks.forEach(task => {
+                        if (!task.completed) {
+                            addTaskToDOM(task);
+                        } else {
+                            completedCount++;
+                        }
+                    });
+                    updateCounters();
+                })
+                .catch(err => console.error('Erro ao carregar tarefas:', err));
+        }
+
+        // ⬅️ MUDANÇA: Lida com múltiplos arquivos
         function addTask() {
-    const taskName = taskInput.value.trim();
-    const cityName = cityInput.value.trim();
-    const requesterName = requesterInput.value.trim();
+            const taskName = taskInput.value.trim();
+            const cityName = cityInput.value.trim();
+            const requesterName = requesterInput.value.trim();
+            const attachmentFiles = attachmentInput.files; // É uma FileList
 
-    if (taskName && cityName && requesterName) {
-        const task = {
-            name: taskName,
-            city: cityName,
-            requester: requesterName,
-            completed: false
-        };
+            if (taskName && cityName && requesterName) {
+                const formData = new FormData();
+                formData.append('taskName', taskName);
+                formData.append('cityName', cityName);
+                formData.append('requesterName', requesterName);
+                
+                // ⬅️ MUDANÇA: Loop para adicionar todos os arquivos
+                if (attachmentFiles.length > 0) {
+                    for (let i = 0; i < attachmentFiles.length; i++) {
+                        // O nome do campo deve ser 'attachments' (plural)
+                        formData.append('attachments', attachmentFiles[i]); 
+                    }
+                }
 
-        // Enviar tarefa para o servidor
-        fetch('/tasks', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(task)
-        })
-        .then(response => response.json())
-        .then(savedTask => {
-            addTaskToDOM(savedTask);
-            taskInput.value = "";
-            cityInput.value = "";
-            requesterInput.value = "";
-        })
-        .catch(err => console.error('Erro ao adicionar tarefa:', err));
-    }
-}
+                fetch('/tasks-with-file', {
+                    method: 'POST',
+                    body: formData 
+                })
+                .then(response => response.json())
+                .then(savedTask => {
+                    loadTasks(); // Recarrega tudo para simplicidade
+                    taskInput.value = "";
+                    cityInput.value = "";
+                    requesterInput.value = "";
+                    attachmentInput.value = "";
+                })
+                .catch(err => console.error('Erro ao adicionar tarefa:', err));
+            } else {
+                alert("Por favor, preencha todos os campos de Pendência, Cidade e Solicitante.");
+            }
+        }
 
         document.addEventListener('keydown', function(event) {
             if (event.key === "Enter") {
                 addTask();
             }
         });
- 
-        // A função toggleMenu() foi removida daqui
- 
+    
+        function formatTimestamp(isoString) {
+            if (!isoString) return '';
+            const date = new Date(isoString);
+            const dateStr = date.toLocaleDateString('pt-BR');
+            const timeStr = date.toLocaleTimeString('pt-BR');
+            return `${dateStr} às ${timeStr}`;
+        }
+
+        // ⬅️ MUDANÇA: Exibe múltiplos links de anexos
         function addTaskToDOM(task) {
-        const row = document.createElement("tr");
+            const row = document.createElement("tr");
+            row.id = `task-row-${encodeURIComponent(task.name)}`;
 
-        // Colunas da tabela
-        const taskCol = document.createElement("td");
-        taskCol.textContent = task.name;
+            const taskCol = document.createElement("td");
+            taskCol.textContent = task.name;
 
-        const cityCol = document.createElement("td");
-        cityCol.textContent = task.city;
+            const cityCol = document.createElement("td");
+            cityCol.textContent = task.city;
 
-        const requesterCol = document.createElement("td");
-        requesterCol.textContent = task.requester;
+            const requesterCol = document.createElement("td");
+            requesterCol.textContent = task.requester;
 
-        // Botão de conclusão
-        const actionCol = document.createElement("td");
-        const completeBtn = document.createElement("button");
-        completeBtn.textContent = "Concluir";
-        completeBtn.classList.add("complete-btn");
-        completeBtn.onclick = () => toggleComplete(task, row, completeBtn);
+            const infoCol = document.createElement("td");
+            infoCol.classList.add("info-col");
+            
+            const timestampDiv = document.createElement("div");
+            timestampDiv.textContent = formatTimestamp(task.timestamp);
+            infoCol.appendChild(timestampDiv);
+            
+            // Container para os links de anexo
+            const attachmentContainer = document.createElement("div");
+            attachmentContainer.id = `attachment-container-${encodeURIComponent(task.name)}`;
+            attachmentContainer.classList.add("attachment-list"); // Adiciona classe para estilo
+
+            // ⬅️ MUDANÇA: Loop no array de anexos
+            if (task.attachments && task.attachments.length > 0) {
+                task.attachments.forEach(file => {
+                    const attachmentLink = document.createElement("a");
+                    attachmentLink.href = file.path;
+                    // Mostra o nome original do arquivo
+                    attachmentLink.textContent = file.filename || "Baixar Anexo"; 
+                    attachmentLink.target = "_blank";
+                    attachmentLink.classList.add("attachment-link");
+                    attachmentContainer.appendChild(attachmentLink);
+                });
+            } else {
+                attachmentContainer.textContent = "Sem anexo";
+            }
+            infoCol.appendChild(attachmentContainer);
+            
+            const actionCol = document.createElement("td");
+            
+            const completeBtn = document.createElement("button");
+            completeBtn.textContent = "✔";
+            completeBtn.classList.add("complete-btn");
+            completeBtn.title = "Concluir Pendência";
+            completeBtn.onclick = () => toggleComplete(task, row);
+            
+            const deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "✘";
+            deleteBtn.classList.add("delete-btn");
+            deleteBtn.title = "Excluir Pendência";
+            deleteBtn.onclick = () => deleteTask(task, row);
+
+            const attachBtn = document.createElement("button");
+            attachBtn.textContent = "📎";
+            attachBtn.classList.add("attach-btn");
+            attachBtn.title = "Anexar arquivo(s)";
+            attachBtn.onclick = () => openAttachModal(task);
+
+
+            actionCol.appendChild(completeBtn);
+            actionCol.appendChild(deleteBtn);
+            actionCol.appendChild(attachBtn);
+
+            row.appendChild(taskCol);
+            row.appendChild(cityCol);
+            row.appendChild(requesterCol);
+            row.appendChild(infoCol);
+            row.appendChild(actionCol);
+            taskList.appendChild(row);
+
+            pendingCount++;
+            updateCounters();
+        }
         
-        // Botão de exclusão
-        const deleteBtn = document.createElement("button");
-        deleteBtn.textContent = "Excluir";
-        deleteBtn.classList.add("delete-btn");
-        deleteBtn.onclick = () => deleteTask(task, row);
-
-        actionCol.appendChild(completeBtn);
-        actionCol.appendChild(deleteBtn);
-
-        row.appendChild(taskCol);
-        row.appendChild(cityCol);
-        row.appendChild(requesterCol);
-        row.appendChild(actionCol);
-        taskList.appendChild(row);
-
-        pendingCount++;
-        updateCounters();
-    }
-	
-	function deleteTask(task, row) {
-    // Enviar requisição para deletar a tarefa no servidor
-    fetch(`/tasks/${encodeURIComponent(task.name)}`, {
-        method: 'DELETE'
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erro ao deletar a tarefa');
-        }
-        // Remover a pendência da tabela
-        taskList.removeChild(row);
-
-        // Atualizar contador de pendências
-        pendingCount--;
-        updateCounters();
-    })
-    .catch(err => console.error(err));
-}
-
-        function saveTaskToLocalStorage(task) {
-            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-            tasks.push(task);
-            localStorage.setItem('tasks', JSON.stringify(tasks));
+        function deleteTask(task, row) {
+            if (!confirm(`Tem certeza que deseja excluir a pendência "${task.name}"?`)) {
+                return;
+            }
+            fetch(`/tasks/${encodeURIComponent(task.name)}`, {
+                method: 'DELETE'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao deletar a tarefa');
+                }
+                loadTasks(); 
+            })
+            .catch(err => console.error(err));
         }
 
-        function toggleComplete(task, row, completeBtn) {
-    task.completed = true; // Marcar como concluída
+        function toggleComplete(task, row) {
+            if (!confirm(`Marcar a pendência "${task.name}" como concluída?`)) {
+                return;
+            }
 
-    // Enviar requisição para atualizar a tarefa no servidor
-    fetch(`/tasks/${encodeURIComponent(task.name)}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(task)
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erro ao atualizar a tarefa');
+            // O spread operator (...) garante que o array 'attachments' seja preservado
+            const updatedTask = {
+                ...task, 
+                completed: true 
+            };
+
+            fetch(`/tasks/${encodeURIComponent(task.name)}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(updatedTask) 
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao atualizar a tarefa');
+                }
+                return response.json();
+            })
+            .then(() => {
+                loadTasks(); 
+            })
+            .catch(err => console.error(err));
         }
-        return response.json();
-    })
-    .then(updatedTask => {
-        // Remover a linha da tabela e atualizar a contagem
-        taskList.removeChild(row);
-        completedCount++;
-        pendingCount--;
-        updateCounters();
-    })
-    .catch(err => console.error(err));
-}
 
         function updateCounters() {
             document.getElementById("pending-count").querySelector("h2").textContent = pendingCount;
             document.getElementById("completed-count").querySelector("h2").textContent = completedCount;
         }
 
-        // Atualizar hora atual
         function updateTime() {
             const now = new Date();
             const hours = String(now.getHours()).padStart(2, '0');
@@ -247,27 +331,84 @@
         updateTime();
 
         function clearCompletedTasks() {
-    // Enviar uma requisição ao servidor para limpar todas as tarefas
-    fetch('/tasks/clear-all', {
-        method: 'DELETE'
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erro ao limpar todas as tarefas');
+            if (!confirm("Tem certeza que deseja limpar TODAS as pendências?")) {
+                return;
+            }
+            fetch('/tasks/clear-all', {
+                method: 'DELETE'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao limpar todas as tarefas');
+                }
+                loadTasks(); 
+            })
+            .catch(err => console.error(err));
         }
-        return response.json(); // Se você espera algum retorno JSON
-    })
-    .then(() => {
-        // Limpa a tabela
-        taskList.innerHTML = "";
-        // Atualiza os contadores
-        pendingCount = 0;
-        completedCount = 0;
-        updateCounters(); // Atualiza os contadores no painel
-    })
-    .catch(err => console.error(err));
-}
 
+        // Funções do Modal de Anexo
+        function openAttachModal(task) {
+            currentTaskToAttach = task;
+            modalTaskNameSpan.textContent = task.name;
+            modalAttachmentInput.value = ''; 
+            uploadStatus.textContent = ''; 
+            attachModal.style.display = 'flex'; 
+        }
+
+        function closeAttachModal() {
+            attachModal.style.display = 'none'; 
+            currentTaskToAttach = null;
+        }
+
+        // ⬅️ MUDANÇA: Lida com múltiplos arquivos
+        function uploadAttachment() {
+            if (!currentTaskToAttach) {
+                alert("Nenhuma pendência selecionada para anexar.");
+                return;
+            }
+
+            const files = modalAttachmentInput.files; // É uma FileList
+            if (!files || files.length === 0) {
+                uploadStatus.textContent = "Selecione um ou mais arquivos para anexar.";
+                uploadStatus.style.color = "red";
+                return;
+            }
+
+            uploadStatus.textContent = "Enviando...";
+            uploadStatus.style.color = "orange";
+
+            const formData = new FormData();
+            // ⬅️ MUDANÇA: Loop para adicionar todos os arquivos
+            for (let i = 0; i < files.length; i++) {
+                formData.append('attachments', files[i]); // Nome do campo 'attachments'
+            }
+
+            fetch(`/tasks/${encodeURIComponent(currentTaskToAttach.name)}/attach`, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => { throw new Error(err.error || 'Erro ao anexar arquivo(s)'); });
+                }
+                return response.json();
+            })
+            .then(updatedTask => {
+                uploadStatus.textContent = "Anexo(s) enviado(s) com sucesso!";
+                uploadStatus.style.color = "green";
+                
+                // ⬅️ MUDANÇA: Recarrega a lista para exibir os novos anexos
+                loadTasks(); 
+                
+                // Fecha o modal após um sucesso
+                setTimeout(closeAttachModal, 1000); 
+            })
+            .catch(err => {
+                uploadStatus.textContent = `Erro: ${err.message}`;
+                uploadStatus.style.color = "red";
+                console.error('Erro ao fazer upload do anexo:', err);
+            });
+        }
     </script>
 </body>
 </html>

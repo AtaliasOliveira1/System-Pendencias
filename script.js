@@ -28,3 +28,4 @@ document.getElementById('ip-card').addEventListener('click', function() {
         console.error('Erro ao copiar IP: ', err);
     });
 });
+

@@ -98,12 +98,47 @@ input[type="text"], select {
     /* Correção: Adicionei altura explícita para forçar a mesma altura */
     height: 42px; 
     box-sizing: border-box;
+    width: 100%; /* Garante que ocupe o espaço no grid */
 }
 
 /* Efeito de foco profissional */
-input[type="text"]:focus, select:focus, button:focus {
+input[type="text"]:focus, select:focus, button:focus, input[type="file"]:focus {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
+}
+
+/* ---------------------------------------------------- */
+/* Input de Arquivo (NOVO) */
+/* ---------------------------------------------------- */
+input[type="file"] {
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--bg-dark);
+    color: var(--text-muted); /* Texto "Nenhum arquivo..." */
+    font-size: 0.9em;
+    height: 42px; 
+    box-sizing: border-box;
+    width: 100%;
+    /* Alinha o texto do input */
+    padding: 10px 12px;
+}
+
+/* Estiliza o botão "Escolher arquivo" interno */
+input[type="file"]::file-selector-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0 12px;
+    height: 36px; /* Um pouco menor que o input */
+    margin-right: 12px;
+    cursor: pointer;
+    margin-top: -7px; /* Ajuste fino de alinhamento */
+    transition: background-color 0.2s;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: #005bb5;
 }
 
 /* ---------------------------------------------------- */
@@ -121,7 +156,7 @@ button {
     font-weight: bold;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     /* Correção: Adicionei altura explícita para o botão Adicionar, 
-       garantindo que ele se alinhe perfeitamente com os inputs que tem height: 42px */
+        garantindo que ele se alinhe perfeitamente com os inputs que tem height: 42px */
     height: 42px; 
 }
 
@@ -144,9 +179,27 @@ button:hover {
 
 .complete-btn {
     background-color: var(--success-color);
+    padding: 8px 14px;
+    margin-top: 5px;
+    /* Removendo height explícito, pois este botão não está na linha do formulário principal */
+    height: auto; 
 }
 .complete-btn:hover {
     background-color: #38703a;
+}
+
+/* NOVO: Botão de Anexar na tabela */
+.attach-btn {
+    background-color: var(--primary-color);
+    padding: 8px 12px; /* Menor para ícone */
+    margin-top: 5px;
+    height: auto; 
+    font-size: 1em; /* Tamanho do emoji */
+    line-height: 1; /* Alinhamento do emoji */
+}
+
+.attach-btn:hover {
+    background-color: #005bb5;
 }
 
 .completed-btn {
@@ -192,6 +245,23 @@ tr:nth-child(even) {
 
 tr:hover {
     background-color: #303030; /* Destaque ao passar o mouse */
+}
+
+/* NOVO: Coluna de Info (Data/Hora e Anexo) */
+.info-col {
+    font-size: 0.9em;
+    color: var(--text-muted);
+    line-height: 1.4;
+    min-width: 160px; /* Garante espaço para data e link */
+}
+.info-col a {
+    color: var(--primary-color);
+    text-decoration: none;
+    margin-top: 4px;
+    display: block; /* Ocupa linha própria */
+}
+.info-col a:hover {
+    text-decoration: underline;
 }
 
 /* ---------------------------------------------------- */
@@ -243,22 +313,21 @@ footer {
 /* Estilos Específicos e Classes Auxiliares */
 /* ---------------------------------------------------- */
 
+/* ATUALIZADO: Layout do formulário de nova tarefa */
 .new-task-section {
-    display: flex;
-    align-items: center;
+    display: grid; /* MUDADO DE FLEX PARA GRID */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Colunas automáticas */
     gap: 10px;
-    /* Correção: Garante que os itens de entrada ocupem a largura máxima disponível de forma igual */
     margin-bottom: 20px;
 }
-.new-task-section input,
-.new-task-section select {
-    flex-grow: 1; /* Permite que os campos de entrada cresçam para preencher o espaço */
-    min-width: 100px; /* Garante um tamanho mínimo em telas grandes */
-}
-.new-task-section button {
-    flex-shrink: 0; /* Impede que o botão encolha */
-}
 
+/* O botão agora ocupa a largura total na linha de baixo */
+.new-task-section button {
+    grid-column: 1 / -1; /* Ocupa a largura total da grade */
+    margin-left: 0; /* Remove a margem, o gap do grid cuida disso */
+    height: 42px; 
+    font-size: 1.1em; /* Um pouco mais de destaque */
+}
 
 /* Estilo para remover a seta padrão no select e usar SVG customizado (melhoria) */
 select {
@@ -273,6 +342,89 @@ select:hover, select:focus {
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='10' viewBox='0 0 14 10'><path fill='white' d='M7 10L0 0h14z'/></svg>");
 }
 
+/* ---------------------------------------------------- */
+/* Modal de Anexo (NOVO) */
+/* ---------------------------------------------------- */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 100; /* Acima do footer (z-index: 10) */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.7); /* Fundo escuro mais opaco */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--bg-medium); /* Fundo do modal */
+    margin: auto;
+    padding: 25px;
+    border: 1px solid var(--border-color); /* Borda do modal */
+    width: 90%; 
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    position: relative;
+    color: var(--text-light); /* Cor do texto */
+}
+
+.close-button {
+    color: var(--text-muted); /* Cor do 'x' */
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--text-light); /* Cor no hover */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    color: var(--primary-color); /* Título do modal */
+    margin-bottom: 20px;
+    font-size: 1.4em;
+}
+.modal-content #modalTaskName {
+    color: var(--text-light);
+    font-weight: bold;
+}
+
+/* Reutiliza o estilo do input de arquivo para o modal */
+.modal-content input[type="file"] {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* Botão de Anexar no modal */
+.modal-content button {
+    background-color: var(--success-color); /* Verde para confirmar */
+    height: auto; /* Resetar altura fixa */
+    padding: 12px 18px;
+    margin-left: 0; /* Resetar margem */
+    width: 100%; 
+    font-size: 1.1em;
+}
+.modal-content button:hover {
+    background-color: #38703a; /* Hover do success */
+}
+
+/* Status do upload */
+#uploadStatus {
+    margin-top: 15px;
+    font-size: 0.9em;
+    text-align: center;
+    font-weight: bold;
+}
 
 /* ---------------------------------------------------- */
 /* Responsividade (Mobile First) */
@@ -296,29 +448,8 @@ select:hover, select:focus {
         height: auto;
     }
 
-    /* O section de nova tarefa se torna coluna no mobile */
-    .new-task-section {
-        flex-direction: column;
-        gap: 10px;
-        align-items: stretch; /* Estica os itens para a largura total */
-        margin-bottom: 20px;
-    }
-
-    .new-task-section input, 
-    .new-task-section select,
-    .new-task-section button {
-        width: 100%;
-        margin-left: 0;
-        box-sizing: border-box;
-        height: auto; /* Remove altura fixa no mobile para se adaptar melhor */
-        padding: 10px 12px;
-    }
-
-    .new-task-section button {
-        margin-top: 0; 
-        margin-bottom: 0;
-        padding: 12px;
-    }
+    /* O layout .new-task-section com grid já é responsivo, 
+       então o bloco antigo foi REMOVIDO */
 
     /* Tabela: Reduzir fontes e padding */
     th, td {
