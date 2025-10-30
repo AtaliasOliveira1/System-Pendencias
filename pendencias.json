@@ -3,7 +3,7 @@
     "name": "Aniversariantes",
     "city": "Grajaú",
     "requester": "Nayana",
-    "completed": false,
+    "completed": true,
     "timestamp": "2025-10-28T19:24:17.440Z",
     "attachments": [
       {
@@ -15,5 +15,119 @@
         "filename": "WhatsApp Image 2025-10-28 at 10.04.27 (1).jpeg"
       }
     ]
+  },
+  {
+    "name": "Promoções de aniversário",
+    "city": "Presidente Dutra",
+    "requester": "Jhonata",
+    "completed": false,
+    "timestamp": "2025-10-28T19:33:45.770Z",
+    "attachments": [
+      {
+        "path": "/uploads/1761680089637-150473900-QUEIMA DE ESTOQUE DE PNEUS DIAS 27,28  E 29DE SETEMBRO ANIVERSÃRIO KSS MOTOS (1).docx",
+        "filename": "QUEIMA DE ESTOQUE DE PNEUS DIAS 27,28  E 29DE SETEMBRO ANIVERSÃRIO KSS MOTOS (1).docx"
+      },
+      {
+        "path": "/uploads/1761680089638-464694058-PROMOÃÃES DE ANIVERSÃRIO DE 5 ANOS DA KSS MOTOS DIA 26 (1).docx",
+        "filename": "PROMOÃÃES DE ANIVERSÃRIO DE 5 ANOS DA KSS MOTOS DIA 26 (1).docx"
+      }
+    ]
+  },
+  {
+    "name": "🏍️✨ QUER DEIXAR SUA MOTO NOVINHA SEM GASTAR NADA? ✨🏍️  A hora é AGORA! 💥 A KSS MOTOS preparou um SORTEIO IMPERDÍVEL pra você que ama cuidar da sua moto!  🛠️ Nas compras a partir de R$200,00, você garante o seu cupom e concorre a uma 🔥 REVISÃO COMPLETA 🔥 com peças e mão de obra 100% GRÁTIS!  💨 Não fique de fora! Passe na KSS MOTOS, participe e acelere rumo à sorte!  RUA CEARÁ, JUÇARA, Nº424 & AVENIDA PEDRO NEIVA DE SANTANA, Nº898.  Válido do dia 01 ao dia 30 novembro",
+    "city": "Ceará & Babaçulândia",
+    "requester": "Fernanda",
+    "completed": true,
+    "timestamp": "2025-10-28T19:35:40.050Z",
+    "attachments": []
+  },
+  {
+    "name": "Imagem novidade - Capacete gow",
+    "city": "Geral",
+    "requester": ".",
+    "completed": true,
+    "timestamp": "2025-10-28T20:10:01.335Z",
+    "attachments": [
+      {
+        "path": "/uploads/1761682201318-268685827-D_NQ_NP_2X_736162-MLB81447482521_122024-F.webp",
+        "filename": "D_NQ_NP_2X_736162-MLB81447482521_122024-F.webp"
+      },
+      {
+        "path": "/uploads/1761682201326-286005077-D_NQ_NP_2X_789935-MLB92395574306_092025-F.webp",
+        "filename": "D_NQ_NP_2X_789935-MLB92395574306_092025-F.webp"
+      }
+    ]
+  },
+  {
+    "name": "Cupom sorteio",
+    "city": "Presidente Dutra",
+    "requester": "Jhonata",
+    "completed": true,
+    "timestamp": "2025-10-29T12:24:09.822Z",
+    "attachments": []
+  },
+  {
+    "name": "Vídeo Convite - Aniversário KSS MOTOS",
+    "city": "Barra do Corda",
+    "requester": "Caio",
+    "completed": false,
+    "timestamp": "2025-10-29T13:10:57.784Z",
+    "attachments": []
+  },
+  {
+    "name": "Colocar promoção na horizontal",
+    "city": "Ceará & Babaçulândia",
+    "requester": "Fernanda",
+    "completed": true,
+    "timestamp": "2025-10-29T17:19:55.866Z",
+    "attachments": []
+  },
+  {
+    "name": "arte de queimão pré Black Friday pro dia 30/31 aqui pra Grajaú, e no anúncio coloca café da manhã no dia 31",
+    "city": "Grajaú",
+    "requester": "Nayana",
+    "completed": true,
+    "timestamp": "2025-10-30T11:40:54.009Z",
+    "attachments": []
+  },
+  {
+    "name": "Prmoção amanhã comm refrigerantes",
+    "city": "Barra do Corda",
+    "requester": "Caio",
+    "completed": true,
+    "timestamp": "2025-10-30T14:28:48.398Z",
+    "attachments": []
+  },
+  {
+    "name": "CApa tabela black friday - dia 28/11",
+    "city": "Balsas",
+    "requester": "Gediael",
+    "completed": false,
+    "timestamp": "2025-10-30T14:54:43.325Z",
+    "attachments": []
+  },
+  {
+    "name": "Imagem do capacete gow R$ 79,99",
+    "city": "Codó",
+    "requester": "Ricardo",
+    "completed": true,
+    "timestamp": "2025-10-30T15:00:02.524Z",
+    "attachments": []
+  },
+  {
+    "name": "Esquenta black friday igual grajaú",
+    "city": "Bacabal",
+    "requester": "Josenir",
+    "completed": true,
+    "timestamp": "2025-10-30T19:11:14.738Z",
+    "attachments": []
+  },
+  {
+    "name": "Esquenta blackfriday - Data: 30/11 ao dia 08/11",
+    "city": "Pedreiras",
+    "requester": "Ricardo",
+    "completed": true,
+    "timestamp": "2025-10-30T19:12:00.153Z",
+    "attachments": []
   }
 ]

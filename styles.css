@@ -118,7 +118,7 @@ input[type="file"] {
     font-size: 0.9em;
     height: 42px; 
     box-sizing: border-box;
-    width: 100%;
+    width: 190%;
     /* Alinha o texto do input */
     padding: 10px 12px;
 }
@@ -128,12 +128,12 @@ input[type="file"]::file-selector-button {
     background-color: var(--primary-color);
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 3px;
     padding: 0 12px;
-    height: 36px; /* Um pouco menor que o input */
-    margin-right: 12px;
+    height: 30px; /* Um pouco menor que o input */
+    margin-right: 10px;
     cursor: pointer;
-    margin-top: -7px; /* Ajuste fino de alinhamento */
+    margin-top: -5px; /* Ajuste fino de alinhamento */
     transition: background-color 0.2s;
 }
 
@@ -145,7 +145,7 @@ input[type="file"]::file-selector-button:hover {
 /* Botões */
 /* ---------------------------------------------------- */
 
-button {
+button { /*botoes de adicionar e excluir (anexar tmb)*/
     background-color: var(--primary-color);
     color: white;
     padding: 10px 18px; /* Mais padding */
@@ -170,7 +170,7 @@ button:hover {
     padding: 8px 14px;
     margin-top: 5px;
     /* Removendo height explícito, pois este botão não está na linha do formulário principal */
-    height: auto; 
+    height: 35px; 
 }
 
 .delete-btn:hover {
@@ -182,7 +182,7 @@ button:hover {
     padding: 8px 14px;
     margin-top: 5px;
     /* Removendo height explícito, pois este botão não está na linha do formulário principal */
-    height: auto; 
+    height: 35px; 
 }
 .complete-btn:hover {
     background-color: #38703a;
@@ -191,10 +191,11 @@ button:hover {
 /* NOVO: Botão de Anexar na tabela */
 .attach-btn {
     background-color: var(--primary-color);
-    padding: 8px 12px; /* Menor para ícone */
+    padding: 8px 14px;
     margin-top: 5px;
-    height: auto; 
-    font-size: 1em; /* Tamanho do emoji */
+    height: 35px; 
+    /*font-size: 1em; /* Tamanho do emoji */
+	font-size: auto; /* Tamanho do emoji */
     line-height: 1; /* Alinhamento do emoji */
 }
 
