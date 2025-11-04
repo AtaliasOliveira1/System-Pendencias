@@ -26,7 +26,7 @@
     transition: background-color 0.3s, box-shadow 0.3s, color 0.3s; /* Transição suave para interações */
 }
 
-/* ⬅️ MUDANÇA: Usando flex-direction: column e min-height para manter o footer no final */
+/* CORREÇÃO DO FOOTER: Usando flex-direction: column e min-height */
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-dark);
@@ -222,7 +222,7 @@ td button {
     color: var(--text-light); /* Data/Hora em destaque */
 }
 
-/* Footer (Agora fora do flex-grow, vai para o final) */
+/* Footer (Fixo no final da página) */
 footer {
     text-align: center;
     padding: 20px;
@@ -230,7 +230,7 @@ footer {
     color: var(--text-muted);
     font-size: 0.9em;
     margin-top: 20px;
-    /* ⬅️ GARANTE QUE NÃO ENCOLHA */
+    /* GARANTE QUE NÃO ENCOLHA */
     flex-shrink: 0; 
 }
 .footer-links a {
@@ -243,7 +243,7 @@ footer {
 }
 
 /* ---------------------------------------------------- */
-/* Estilos Comuns de Modal (para attachModal e viewModal) */
+/* Estilos Comuns de Modal (para attachModal, viewModal e confirmModal) */
 /* ---------------------------------------------------- */
 
 .modal {
@@ -271,7 +271,7 @@ footer {
     width: 90%;
     max-width: 600px;
     position: relative;
-    color: var(--text-color);
+    color: var(--text-light);
 }
 
 /* Botão de Fechar */
@@ -315,16 +315,17 @@ footer {
 }
 
 /* ---------------------------------------------------- */
-/* NOVOS ESTILOS: Modal de Visualização (viewModal) */
+/* ESTILOS: Modal de Visualização (viewModal) */
 /* ---------------------------------------------------- */
 
 .file-viewer-content {
     max-width: 95vw;
-    width: 90%; /* Aumentamos a largura base */
+    width: 90%; 
     max-height: 95vh;
-    height: 90vh; /* Define uma altura para o modal */
+    height: 90vh; 
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Importante para organizar o espaço (h3, iframe/img, actions) */
+    align-items: center; /* Centraliza a imagem/iframe horizontalmente */
 }
 
 .file-viewer-content h3 {
@@ -333,24 +334,41 @@ footer {
     color: var(--primary-color);
     font-size: 1.2em;
     text-align: center;
+    flex-shrink: 0;
 }
 
-/* ⬅️ MUDANÇA: Ajustes para o iframe */
+/* Ajustes para o iframe (usado para PDF, vídeos) */
 #fileViewerFrame {
     flex-grow: 1; 
     background-color: #222; 
     border: 1px solid #444 !important;
     margin-bottom: 15px;
-    /* ⬅️ GARANTE QUE A IMAGEM/PDF SE AJUSTE DENTRO DO IFRAME (Funciona melhor com o iframe) */
     width: 100%; 
     height: 100%;
 }
+
+/* ESTILO: Estilo para a Imagem de Visualização (Redimensionamento) */
+.viewer-image {
+    max-width: 100%; /* Garante que nunca ultrapasse a largura do modal */
+    /* 100% da altura restante menos o cabeçalho e ações */
+    max-height: calc(100% - 70px); 
+    height: auto;
+    width: auto;
+    object-fit: contain; /* Redimensiona para caber sem cortar, mantendo proporção */
+    margin: auto;
+    display: block;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    /* Ocupa o espaço onde o iframe estaria, com flex-grow */
+    flex-grow: 1; 
+}
+
 
 .modal-actions {
     display: flex;
     justify-content: center;
     padding-top: 10px;
-    /* ⬅️ Impede que o botão seja espremido */
+    /* Impede que o botão seja espremido */
     flex-shrink: 0; 
 }
 
@@ -372,6 +390,83 @@ footer {
 .download-btn:hover {
     background-color: #5cb85c;
 }
+
+
+/* ---------------------------------------------------- */
+/* NOVOS ESTILOS: Modal de Confirmação */
+/* ---------------------------------------------------- */
+
+.confirmation-content {
+    /* Diminui a largura para a confirmação */
+    max-width: 450px; 
+    text-align: center;
+}
+
+.confirmation-content h3 {
+    color: var(--text-light);
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.confirmation-content p {
+    color: var(--text-muted);
+    font-size: 1.1em;
+    margin-bottom: 25px;
+    line-height: 1.4;
+    /* Permite que negrito e itálico funcionem em HTML, se usados no JS */
+    white-space: pre-wrap; 
+}
+
+.confirm-actions {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+}
+
+.confirm-btn, .cancel-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    flex: 1; /* Ocupa metade do espaço */
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.confirm-btn:hover, .cancel-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.cancel-btn {
+    background-color: var(--bg-medium);
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+}
+.cancel-btn:hover {
+    background-color: var(--bg-light);
+    color: var(--text-light);
+}
+
+/* Estilos dinâmicos para o botão de Confirmação */
+.confirm-btn.complete-action {
+    background-color: var(--success-color);
+    color: white;
+}
+.confirm-btn.complete-action:hover {
+    background-color: #5cb85c;
+}
+
+.confirm-btn.delete-action {
+    background-color: var(--danger-color);
+    color: white;
+}
+.confirm-btn.delete-action:hover {
+    background-color: #d9534f;
+}
+
 
 /* ---------------------------------------------------- */
 /* Responsividade (Mobile First) */
@@ -435,5 +530,11 @@ footer {
     .file-viewer-content {
         width: 95%;
         height: 95vh;
+    }
+    
+    /* Ações de Confirmação em coluna no mobile */
+    .confirm-actions {
+        flex-direction: column;
+        gap: 10px;
     }
 }

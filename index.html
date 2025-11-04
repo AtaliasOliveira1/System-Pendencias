@@ -81,13 +81,6 @@
         </table>
     </div>
 
-    <footer>
-        <p>2025 © Atalias Lô-Amí</p>
-        <div class="footer-links">
-            <a href="https://github.com/AtaliasOliveira1/System-Pendencias">Github</a>
-        </div>
-    </footer>
-
     
     <div id="attachModal" class="modal">
         <div class="modal-content">
@@ -114,6 +107,27 @@
         </div>
     </div>
 
+    <div id="confirmModal" class="modal">
+        <div class="modal-content confirmation-content">
+            <span class="close-button" onclick="closeConfirmModal()">&times;</span>
+            <h3 id="confirmationTitle"></h3>
+            <p id="confirmationMessage"></p>
+            
+            <div class="confirm-actions">
+                <button id="confirmActionBtn" onclick="handleConfirmation()">Confirmar</button>
+                <button class="cancel-btn" onclick="closeConfirmModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <p>2025 © Atalias Lô-Amí</p>
+        <div class="footer-links">
+            <a href="https://github.com/AtaliasOliveira1/System-Pendencias">Github</a>
+        </div>
+    </footer>
+
 
     <script src="/socket.io/socket.io.js"></script>
     
@@ -136,12 +150,22 @@
         const uploadStatus = document.getElementById('uploadStatus');
         let currentTaskToAttach = null; 
         
-        // NOVAS VARIÁVEIS PARA O MODAL DE VISUALIZAÇÃO
+        // VARIÁVEIS PARA O MODAL DE VISUALIZAÇÃO
         const viewModal = document.getElementById('viewModal');
         const fileViewerFrame = document.getElementById('fileViewerFrame');
         const viewFileName = document.getElementById('viewFileName');
         const downloadButton = document.getElementById('downloadButton');
+        const fileViewerContent = document.querySelector('.modal-content.file-viewer-content');
         
+        // NOVO: VARIÁVEIS PARA O MODAL DE CONFIRMAÇÃO
+        const confirmModal = document.getElementById('confirmModal');
+        const confirmationTitle = document.getElementById('confirmationTitle');
+        const confirmationMessage = document.getElementById('confirmationMessage');
+        const confirmActionBtn = document.getElementById('confirmActionBtn');
+        let pendingAction = null; // Armazena a ação a ser executada ('complete' ou 'delete')
+        let pendingTask = null;    // Armazena a tarefa envolvida na ação
+
+
         // ----------------------------------------------------
         // Lógica do Socket.IO para Tempo Real
         // ----------------------------------------------------
@@ -156,7 +180,7 @@
 
         document.addEventListener('DOMContentLoaded', loadTasks);
 
-        // A lógica de carregamento agora SÓ exibe tarefas PENDENTES
+        
         function loadTasks() {
             fetch('/tasks')
                 .then(response => {
@@ -303,14 +327,15 @@
             completeBtn.classList.add("complete-btn");
             completeBtn.title = "Concluir Pendência";
             
-            // Ação de conclusão
-            completeBtn.onclick = () => toggleComplete(task, row);
+            // Ação de conclusão: AGORA ABRE O MODAL
+            completeBtn.onclick = () => openConfirmModal('complete', task);
             
             const deleteBtn = document.createElement("button");
             deleteBtn.textContent = "✘";
             deleteBtn.classList.add("delete-btn");
             deleteBtn.title = "Excluir Pendência";
-            deleteBtn.onclick = () => deleteTask(task, row);
+            // Ação de exclusão: AGORA ABRE O MODAL
+            deleteBtn.onclick = () => openConfirmModal('delete', task);
 
             const attachBtn = document.createElement("button");
             attachBtn.textContent = "Anexar";
@@ -331,10 +356,11 @@
             taskList.appendChild(row);
         }
         
-        function deleteTask(task, row) {
-            if (!confirm(`Tem certeza que deseja excluir a pendência "${task.name}"?`)) {
-                return;
-            }
+        // ----------------------------------------------------
+        // Funções de Ação (executadas APÓS a confirmação)
+        // ----------------------------------------------------
+
+        function executeDeleteTask(task) {
             fetch(`/tasks/${encodeURIComponent(task.name)}`, {
                 method: 'DELETE'
             })
@@ -342,19 +368,15 @@
                 if (!response.ok && response.status !== 204) {
                     throw new Error('Erro ao deletar a tarefa');
                 }
-                // O Socket.IO se encarregará de recarregar a lista (e remover a linha)
+                // O Socket.IO se encarregará de recarregar a lista
             })
             .catch(err => console.error(err));
         }
 
         // Função para sempre marcar como TRUE (concluída)
-        function toggleComplete(task, row) {
+        function executeToggleComplete(task) {
             const newStatus = true; 
             
-            if (!confirm(`Marcar a pendência "${task.name}" como CONCLUÍDA?`)) {
-                return;
-            }
-
             const updatedTask = {
                 completed: newStatus 
             };
@@ -378,42 +400,56 @@
             .catch(err => console.error(err));
         }
 
-        function updateCounters() {
-            taskCounter.textContent = pendingCount;
-            completedCounter.textContent = completedCount;
+        // ----------------------------------------------------
+        // Lógica do Novo Modal de Confirmação
+        // ----------------------------------------------------
+        
+        function openConfirmModal(actionType, task) {
+            pendingAction = actionType;
+            pendingTask = task;
+
+            if (actionType === 'complete') {
+                confirmationTitle.textContent = "CONFIRMAR CONCLUSÃO";
+                confirmationMessage.innerHTML = `Tem certeza que deseja marcar a pendência **"${task.name}"** como CONCLUÍDA?`;
+                confirmActionBtn.textContent = "CONCLUIR";
+                confirmActionBtn.className = 'confirm-btn complete-action';
+                
+            } else if (actionType === 'delete') {
+                confirmationTitle.textContent = "CONFIRMAR EXCLUSÃO";
+                confirmationMessage.innerHTML = `**ATENÇÃO!** Você está prestes a excluir a pendência **"${task.name}"**. Esta ação é irreversível.`;
+                confirmActionBtn.textContent = "EXCLUIR";
+                confirmActionBtn.className = 'confirm-btn delete-action';
+            }
+            
+            confirmModal.style.display = 'flex';
         }
 
-        function updateTime() {
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            document.getElementById("time-display").textContent = `${hours}:${minutes}:${seconds}`;
+        function closeConfirmModal() {
+            confirmModal.style.display = 'none';
+            pendingAction = null;
+            pendingTask = null;
         }
-        setInterval(updateTime, 1000);
-        updateTime();
-
-        function clearCompletedTasks() {
-            if (!confirm("Tem certeza que deseja limpar TODAS as pendências?")) {
+        
+        function handleConfirmation() {
+            if (!pendingAction || !pendingTask) {
+                closeConfirmModal();
                 return;
             }
-            fetch('/tasks/clear-all', {
-                method: 'DELETE'
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro ao limpar todas as tarefas');
-                }
-                // O Socket.IO se encarregará de recarregar a lista
-            })
-            .catch(err => console.error(err));
+
+            // Executa a função correspondente
+            if (pendingAction === 'complete') {
+                executeToggleComplete(pendingTask);
+            } else if (pendingAction === 'delete') {
+                executeDeleteTask(pendingTask);
+            }
+
+            closeConfirmModal();
         }
 
         // ----------------------------------------------------
-        // Lógica dos Modais
+        // Lógica dos Modais Anexo e Visualização
         // ----------------------------------------------------
 
-        // Funções do Modal de Anexo
         function openAttachModal(task) {
             currentTaskToAttach = task;
             modalTaskNameSpan.textContent = task.name;
@@ -473,25 +509,90 @@
             });
         }
         
-        // NOVAS FUNÇÕES: Modal de Visualização
         function openViewModal(filePath, fileName) {
             viewFileName.textContent = fileName;
             
-            // Define o arquivo a ser exibido no iframe
-            fileViewerFrame.src = filePath; 
+            const extension = fileName.split('.').pop().toLowerCase();
+            const isImage = ['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(extension);
             
-            // Configura o botão de download
             downloadButton.href = filePath;
-            downloadButton.download = fileName; // Sugere o nome do arquivo
+            downloadButton.download = fileName; 
+
+            fileViewerFrame.style.display = 'none'; 
+            
+            if (isImage) {
+                let existingImg = document.getElementById('viewerImage');
+                if (existingImg) {
+                    existingImg.remove();
+                }
+
+                const img = document.createElement('img');
+                img.id = 'viewerImage';
+                img.src = filePath;
+                img.alt = fileName;
+                img.className = 'viewer-image'; 
+                
+                const modalContent = document.querySelector('.modal-content.file-viewer-content');
+                const modalActions = document.querySelector('.modal-actions');
+                modalContent.insertBefore(img, modalActions);
+                
+            } else {
+                let existingImg = document.getElementById('viewerImage');
+                if (existingImg) {
+                    existingImg.remove();
+                }
+                
+                fileViewerFrame.style.display = 'block'; 
+                fileViewerFrame.src = filePath; 
+            }
 
             viewModal.style.display = 'flex'; 
         }
 
         function closeViewModal() {
             viewModal.style.display = 'none';
-            // Limpa o iframe para liberar recursos
+            
             fileViewerFrame.src = ''; 
+            fileViewerFrame.style.display = 'block'; 
+            
+            let existingImg = document.getElementById('viewerImage');
+            if (existingImg) {
+                existingImg.remove();
+            }
         }
+        
+        function updateCounters() {
+            taskCounter.textContent = pendingCount;
+            completedCounter.textContent = completedCount;
+        }
+
+        function updateTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById("time-display").textContent = `${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        function clearCompletedTasks() {
+            // Mantendo o confirm() nativo aqui. Mude para openConfirmModal se desejar customizá-lo também.
+            if (!confirm("Tem certeza que deseja limpar TODAS as pendências?")) {
+                return;
+            }
+            fetch('/tasks/clear-all', {
+                method: 'DELETE'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao limpar todas as tarefas');
+                }
+                // O Socket.IO se encarregará de recarregar a lista
+            })
+            .catch(err => console.error(err));
+        }
+
     </script>
 </body>
 </html>
