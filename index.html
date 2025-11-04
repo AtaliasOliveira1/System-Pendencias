@@ -101,6 +101,20 @@
         </div>
     </div>
 
+    <div id="viewModal" class="modal">
+        <div class="modal-content file-viewer-content">
+            <span class="close-button" onclick="closeViewModal()">&times;</span>
+            <h3 id="viewFileName">Visualizando Arquivo</h3>
+            
+            <iframe id="fileViewerFrame" frameborder="0" style="width: 100%; height: 80%; border: none;"></iframe>
+            
+            <div class="modal-actions">
+                <a id="downloadButton" href="#" download class="download-btn">Baixar Arquivo</a>
+            </div>
+        </div>
+    </div>
+
+
     <script src="/socket.io/socket.io.js"></script>
     
     <script>
@@ -121,6 +135,12 @@
         const modalAttachmentInput = document.getElementById('modalAttachmentInput');
         const uploadStatus = document.getElementById('uploadStatus');
         let currentTaskToAttach = null; 
+        
+        // NOVAS VARIÁVEIS PARA O MODAL DE VISUALIZAÇÃO
+        const viewModal = document.getElementById('viewModal');
+        const fileViewerFrame = document.getElementById('fileViewerFrame');
+        const viewFileName = document.getElementById('viewFileName');
+        const downloadButton = document.getElementById('downloadButton');
         
         // ----------------------------------------------------
         // Lógica do Socket.IO para Tempo Real
@@ -259,10 +279,15 @@
             if (task.attachments && task.attachments.length > 0) {
                 task.attachments.forEach(file => {
                     const attachmentLink = document.createElement("a");
-                    attachmentLink.href = file.path;
+                    // MUDANÇA: Remove target="_blank" e o href padrão
+                    attachmentLink.href = "#"; 
                     attachmentLink.textContent = file.filename || "Baixar Anexo"; 
-                    attachmentLink.target = "_blank";
                     attachmentLink.classList.add("attachment-link");
+                    // MUDANÇA: Adiciona a função para abrir o modal no clique
+                    attachmentLink.onclick = (e) => {
+                        e.preventDefault(); 
+                        openViewModal(file.path, file.filename);
+                    };
                     attachmentContainer.appendChild(attachmentLink);
                 });
             } else {
@@ -384,6 +409,10 @@
             .catch(err => console.error(err));
         }
 
+        // ----------------------------------------------------
+        // Lógica dos Modais
+        // ----------------------------------------------------
+
         // Funções do Modal de Anexo
         function openAttachModal(task) {
             currentTaskToAttach = task;
@@ -442,6 +471,26 @@
                 uploadStatus.style.color = "red";
                 console.error('Erro ao fazer upload do anexo:', err);
             });
+        }
+        
+        // NOVAS FUNÇÕES: Modal de Visualização
+        function openViewModal(filePath, fileName) {
+            viewFileName.textContent = fileName;
+            
+            // Define o arquivo a ser exibido no iframe
+            fileViewerFrame.src = filePath; 
+            
+            // Configura o botão de download
+            downloadButton.href = filePath;
+            downloadButton.download = fileName; // Sugere o nome do arquivo
+
+            viewModal.style.display = 'flex'; 
+        }
+
+        function closeViewModal() {
+            viewModal.style.display = 'none';
+            // Limpa o iframe para liberar recursos
+            fileViewerFrame.src = ''; 
         }
     </script>
 </body>
