@@ -54,11 +54,11 @@
 
         <div class="cards">
             <div class="card" id="pending-count">
-                <h2>0</h2>
+                <h2><span id="taskCounter">0</span></h2>
                 <p>Pendências</p>
             </div>
             <div class="card" id="completed-count">
-                <h2>0</h2>
+                <h2><span id="completedCounter">0</span></h2>
                 <p>Concluídas</p>
             </div>
             <div class="card">
@@ -101,12 +101,18 @@
         </div>
     </div>
 
+    <script src="/socket.io/socket.io.js"></script>
+    
     <script>
         const taskList = document.getElementById("taskList");
         const taskInput = document.getElementById("taskInput");
         const cityInput = document.getElementById("cityInput");
         const requesterInput = document.getElementById("requesterInput");
         const attachmentInput = document.getElementById("attachmentInput");
+        
+        const taskCounter = document.getElementById('taskCounter');
+        const completedCounter = document.getElementById('completedCounter');
+
         let pendingCount = 0;
         let completedCount = 0;
 
@@ -115,70 +121,102 @@
         const modalAttachmentInput = document.getElementById('modalAttachmentInput');
         const uploadStatus = document.getElementById('uploadStatus');
         let currentTaskToAttach = null; 
+        
+        // ----------------------------------------------------
+        // Lógica do Socket.IO para Tempo Real
+        // ----------------------------------------------------
+        const socket = io(); 
+
+        // Escuta por eventos de mudança e recarrega a lista
+        socket.on('task_created', () => loadTasks()); 
+        socket.on('task_deleted', () => loadTasks());
+        socket.on('task_updated', () => loadTasks()); 
+        socket.on('tasks_cleared', () => loadTasks());
+        // ----------------------------------------------------
 
         document.addEventListener('DOMContentLoaded', loadTasks);
 
+        // A lógica de carregamento agora SÓ exibe tarefas PENDENTES
         function loadTasks() {
             fetch('/tasks')
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao carregar as pendências');
+                    }
+                    return response.json();
+                })
                 .then(tasks => {
                     taskList.innerHTML = ''; 
                     pendingCount = 0;
                     completedCount = 0; 
+                    
+                    // Ordena: Novas pendências no topo
+                    tasks.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
 
                     tasks.forEach(task => {
+                        // FILTRO: SÓ exibe se NÃO estiver concluída
                         if (!task.completed) {
-                            addTaskToDOM(task);
+                            addTaskToDOM(task); 
+                            pendingCount++;
                         } else {
+                            // Conta as concluídas, mas NÃO exibe
                             completedCount++;
                         }
                     });
+                    
                     updateCounters();
                 })
-                .catch(err => console.error('Erro ao carregar tarefas:', err));
+                .catch(err => {
+                    console.error('Erro ao carregar tarefas:', err);
+                    taskList.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--danger-color);">Erro ao carregar as pendências.</td></tr>`;
+                });
         }
 
-        // ⬅️ MUDANÇA: Lida com múltiplos arquivos
         function addTask() {
             const taskName = taskInput.value.trim();
             const cityName = cityInput.value.trim();
             const requesterName = requesterInput.value.trim();
-            const attachmentFiles = attachmentInput.files; // É uma FileList
+            const attachmentFiles = attachmentInput.files;
 
-            if (taskName && cityName && requesterName) {
-                const formData = new FormData();
-                formData.append('taskName', taskName);
-                formData.append('cityName', cityName);
-                formData.append('requesterName', requesterName);
-                
-                // ⬅️ MUDANÇA: Loop para adicionar todos os arquivos
-                if (attachmentFiles.length > 0) {
-                    for (let i = 0; i < attachmentFiles.length; i++) {
-                        // O nome do campo deve ser 'attachments' (plural)
-                        formData.append('attachments', attachmentFiles[i]); 
-                    }
-                }
-
-                fetch('/tasks-with-file', {
-                    method: 'POST',
-                    body: formData 
-                })
-                .then(response => response.json())
-                .then(savedTask => {
-                    loadTasks(); // Recarrega tudo para simplicidade
-                    taskInput.value = "";
-                    cityInput.value = "";
-                    requesterInput.value = "";
-                    attachmentInput.value = "";
-                })
-                .catch(err => console.error('Erro ao adicionar tarefa:', err));
-            } else {
-                alert("Por favor, preencha todos os campos de Pendência, Cidade e Solicitante.");
+            if (!taskName || !cityName || !requesterName) {
+                alert("Por favor, preencha Pendência, Cidade e Solicitante.");
+                return;
             }
+
+            const formData = new FormData();
+            formData.append('taskName', taskName);
+            formData.append('cityName', cityName);
+            formData.append('requesterName', requesterName);
+            
+            for (let i = 0; i < attachmentFiles.length; i++) {
+                formData.append('attachments', attachmentFiles[i]); 
+            }
+
+            fetch('/tasks-with-file', {
+                method: 'POST',
+                body: formData 
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => { throw new Error(err.error || 'Erro ao adicionar a pendência'); });
+                }
+                return response.json();
+            })
+            .then(savedTask => {
+                taskInput.value = "";
+                cityInput.value = "Geral"; 
+                requesterInput.value = "";
+                attachmentInput.value = "";
+            })
+            .catch(err => {
+                console.error('Erro ao adicionar tarefa:', err);
+                alert(`Erro ao adicionar pendência: ${err.message}`);
+            });
         }
 
         document.addEventListener('keydown', function(event) {
-            if (event.key === "Enter") {
+            if (event.key === "Enter" && document.activeElement !== attachmentInput && document.activeElement !== modalAttachmentInput) {
                 addTask();
             }
         });
@@ -191,8 +229,10 @@
             return `${dateStr} às ${timeStr}`;
         }
 
-        // ⬅️ MUDANÇA: Exibe múltiplos links de anexos
         function addTaskToDOM(task) {
+            // A função só adiciona tarefas PENDENTES (graças ao loadTasks)
+            if (task.completed) return; 
+            
             const row = document.createElement("tr");
             row.id = `task-row-${encodeURIComponent(task.name)}`;
 
@@ -212,17 +252,14 @@
             timestampDiv.textContent = formatTimestamp(task.timestamp);
             infoCol.appendChild(timestampDiv);
             
-            // Container para os links de anexo
             const attachmentContainer = document.createElement("div");
             attachmentContainer.id = `attachment-container-${encodeURIComponent(task.name)}`;
-            attachmentContainer.classList.add("attachment-list"); // Adiciona classe para estilo
+            attachmentContainer.classList.add("attachment-list");
 
-            // ⬅️ MUDANÇA: Loop no array de anexos
             if (task.attachments && task.attachments.length > 0) {
                 task.attachments.forEach(file => {
                     const attachmentLink = document.createElement("a");
                     attachmentLink.href = file.path;
-                    // Mostra o nome original do arquivo
                     attachmentLink.textContent = file.filename || "Baixar Anexo"; 
                     attachmentLink.target = "_blank";
                     attachmentLink.classList.add("attachment-link");
@@ -235,10 +272,13 @@
             
             const actionCol = document.createElement("td");
             
+            // Botão Concluir
             const completeBtn = document.createElement("button");
-            completeBtn.textContent = "✔";
+            completeBtn.textContent = "✔"; 
             completeBtn.classList.add("complete-btn");
             completeBtn.title = "Concluir Pendência";
+            
+            // Ação de conclusão
             completeBtn.onclick = () => toggleComplete(task, row);
             
             const deleteBtn = document.createElement("button");
@@ -264,9 +304,6 @@
             row.appendChild(infoCol);
             row.appendChild(actionCol);
             taskList.appendChild(row);
-
-            pendingCount++;
-            updateCounters();
         }
         
         function deleteTask(task, row) {
@@ -277,23 +314,24 @@
                 method: 'DELETE'
             })
             .then(response => {
-                if (!response.ok) {
+                if (!response.ok && response.status !== 204) {
                     throw new Error('Erro ao deletar a tarefa');
                 }
-                loadTasks(); 
+                // O Socket.IO se encarregará de recarregar a lista (e remover a linha)
             })
             .catch(err => console.error(err));
         }
 
+        // Função para sempre marcar como TRUE (concluída)
         function toggleComplete(task, row) {
-            if (!confirm(`Marcar a pendência "${task.name}" como concluída?`)) {
+            const newStatus = true; 
+            
+            if (!confirm(`Marcar a pendência "${task.name}" como CONCLUÍDA?`)) {
                 return;
             }
 
-            // O spread operator (...) garante que o array 'attachments' seja preservado
             const updatedTask = {
-                ...task, 
-                completed: true 
+                completed: newStatus 
             };
 
             fetch(`/tasks/${encodeURIComponent(task.name)}`, {
@@ -310,14 +348,14 @@
                 return response.json();
             })
             .then(() => {
-                loadTasks(); 
+                // O Socket.IO se encarregará de recarregar a lista e remover a linha concluída
             })
             .catch(err => console.error(err));
         }
 
         function updateCounters() {
-            document.getElementById("pending-count").querySelector("h2").textContent = pendingCount;
-            document.getElementById("completed-count").querySelector("h2").textContent = completedCount;
+            taskCounter.textContent = pendingCount;
+            completedCounter.textContent = completedCount;
         }
 
         function updateTime() {
@@ -341,7 +379,7 @@
                 if (!response.ok) {
                     throw new Error('Erro ao limpar todas as tarefas');
                 }
-                loadTasks(); 
+                // O Socket.IO se encarregará de recarregar a lista
             })
             .catch(err => console.error(err));
         }
@@ -360,14 +398,13 @@
             currentTaskToAttach = null;
         }
 
-        // ⬅️ MUDANÇA: Lida com múltiplos arquivos
         function uploadAttachment() {
             if (!currentTaskToAttach) {
                 alert("Nenhuma pendência selecionada para anexar.");
                 return;
             }
 
-            const files = modalAttachmentInput.files; // É uma FileList
+            const files = modalAttachmentInput.files;
             if (!files || files.length === 0) {
                 uploadStatus.textContent = "Selecione um ou mais arquivos para anexar.";
                 uploadStatus.style.color = "red";
@@ -378,9 +415,8 @@
             uploadStatus.style.color = "orange";
 
             const formData = new FormData();
-            // ⬅️ MUDANÇA: Loop para adicionar todos os arquivos
             for (let i = 0; i < files.length; i++) {
-                formData.append('attachments', files[i]); // Nome do campo 'attachments'
+                formData.append('attachments', files[i]);
             }
 
             fetch(`/tasks/${encodeURIComponent(currentTaskToAttach.name)}/attach`, {
@@ -397,10 +433,8 @@
                 uploadStatus.textContent = "Anexo(s) enviado(s) com sucesso!";
                 uploadStatus.style.color = "green";
                 
-                // ⬅️ MUDANÇA: Recarrega a lista para exibir os novos anexos
-                loadTasks(); 
+                // O Socket.IO se encarregará de recarregar a lista
                 
-                // Fecha o modal após um sucesso
                 setTimeout(closeAttachModal, 1000); 
             })
             .catch(err => {

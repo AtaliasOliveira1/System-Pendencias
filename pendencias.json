@@ -20,7 +20,7 @@
     "name": "Promoções de aniversário",
     "city": "Presidente Dutra",
     "requester": "Jhonata",
-    "completed": false,
+    "completed": true,
     "timestamp": "2025-10-28T19:33:45.770Z",
     "attachments": [
       {
@@ -102,7 +102,7 @@
     "name": "CApa tabela black friday - dia 28/11",
     "city": "Balsas",
     "requester": "Gediael",
-    "completed": false,
+    "completed": true,
     "timestamp": "2025-10-30T14:54:43.325Z",
     "attachments": []
   },
@@ -129,5 +129,154 @@
     "completed": true,
     "timestamp": "2025-10-30T19:12:00.153Z",
     "attachments": []
+  },
+  {
+    "name": "Antes e Depois",
+    "city": "Amarante",
+    "requester": "Marcelo",
+    "completed": true,
+    "timestamp": "2025-10-31T12:28:24.804Z",
+    "attachments": [
+      {
+        "path": "/uploads/1761913718033-49368753-Imagem do WhatsApp de 2025-10-31 Ã (s) 09.09.37_924117e4.jpg",
+        "filename": "Imagem do WhatsApp de 2025-10-31 Ã (s) 09.09.37_924117e4.jpg"
+      },
+      {
+        "path": "/uploads/1761913718121-553633062-VÃ­deo do WhatsApp de 2025-10-31 Ã (s) 09.09.38_7de3a25c.mp4",
+        "filename": "VÃ­deo do WhatsApp de 2025-10-31 Ã (s) 09.09.38_7de3a25c.mp4"
+      },
+      {
+        "path": "/uploads/1761913718443-817050733-Imagem do WhatsApp de 2025-10-31 Ã (s) 09.09.37_bbd9aadf.jpg",
+        "filename": "Imagem do WhatsApp de 2025-10-31 Ã (s) 09.09.37_bbd9aadf.jpg"
+      },
+      {
+        "path": "/uploads/1761913718526-580906365-Imagem do WhatsApp de 2025-10-31 Ã (s) 09.09.38_662e8000.jpg",
+        "filename": "Imagem do WhatsApp de 2025-10-31 Ã (s) 09.09.38_662e8000.jpg"
+      },
+      {
+        "path": "/uploads/1761913718538-33155478-Imagem do WhatsApp de 2025-10-31 Ã (s) 09.09.38_b90ab158.jpg",
+        "filename": "Imagem do WhatsApp de 2025-10-31 Ã (s) 09.09.38_b90ab158.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Cupom sorteio revisão",
+    "city": "Ceará & Babaçulândia",
+    "requester": "Fernanda",
+    "completed": true,
+    "timestamp": "2025-10-31T12:30:23.965Z",
+    "attachments": []
+  },
+  {
+    "name": "Vídeo promoção",
+    "city": "Ceará & Babaçulândia",
+    "requester": "Fernanda",
+    "completed": true,
+    "timestamp": "2025-10-31T19:38:33.270Z",
+    "attachments": [
+      {
+        "path": "/uploads/1761939513182-9638264-KSS MOTOS RÃDIO IMPERATRIZ RADIO  31 10.mp3",
+        "filename": "KSS MOTOS RÃDIO IMPERATRIZ RADIO  31 10.mp3"
+      }
+    ]
+  },
+  {
+    "name": "Promoção de black friday",
+    "city": "Açailândia",
+    "requester": "Daniel",
+    "completed": true,
+    "timestamp": "2025-11-01T12:34:30.780Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762000470700-715424848-Screenshot_49.png",
+        "filename": "Screenshot_49.png"
+      }
+    ]
+  },
+  {
+    "name": "Promoção de Black Friday & Novembro Azul",
+    "city": "Grajaú",
+    "requester": "Ricardo",
+    "completed": true,
+    "timestamp": "2025-11-01T13:19:51.822Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762003203944-139598561-Screenshot_50.png",
+        "filename": "Screenshot_50.png"
+      },
+      {
+        "path": "/uploads/1762003213382-68575921-Imagem do WhatsApp de 2025-11-01 Ã (s) 09.30.04_12ebeb2b.jpg",
+        "filename": "Imagem do WhatsApp de 2025-11-01 Ã (s) 09.30.04_12ebeb2b.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Ganhador tanque cheio",
+    "city": "Sítio Novo",
+    "requester": "Jardel",
+    "completed": true,
+    "timestamp": "2025-11-01T14:49:20.372Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762008560330-84735650-Imagem do WhatsApp de 2025-11-01 Ã (s) 11.27.46_78e5dc46.jpg",
+        "filename": "Imagem do WhatsApp de 2025-11-01 Ã (s) 11.27.46_78e5dc46.jpg"
+      },
+      {
+        "path": "/uploads/1762008560340-523067773-Imagem do WhatsApp de 2025-11-01 Ã (s) 11.27.38_07a4bf98.jpg",
+        "filename": "Imagem do WhatsApp de 2025-11-01 Ã (s) 11.27.38_07a4bf98.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Wallpaper Natal",
+    "city": "Ceará & Babaçulândia",
+    "requester": "Thayná Exlusão",
+    "completed": true,
+    "timestamp": "2025-11-03T12:50:46.818Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762174246782-210338703-Imagem do WhatsApp de 2025-11-03 Ã (s) 09.47.54_a2debe1f.jpg",
+        "filename": "Imagem do WhatsApp de 2025-11-03 Ã (s) 09.47.54_a2debe1f.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Capa tabela atacado - black friday - mês inteiro de novembro",
+    "city": "Pedreiras",
+    "requester": "Ricardo",
+    "completed": false,
+    "timestamp": "2025-11-03T13:30:41.095Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762176641086-355253416-Imagem do WhatsApp de 2025-11-03 Ã (s) 10.06.29_70236fd2.jpg",
+        "filename": "Imagem do WhatsApp de 2025-11-03 Ã (s) 10.06.29_70236fd2.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Black das Black KSS MOTOS",
+    "city": "Pedreiras",
+    "requester": "Ricardo",
+    "completed": false,
+    "timestamp": "2025-11-03T20:35:10.019Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762202130241-179886848-BLACK FRIDAY DAS BLACK KSS MOTOS.docx",
+        "filename": "BLACK FRIDAY DAS BLACK KSS MOTOS.docx"
+      }
+    ]
+  },
+  {
+    "name": "Roleta Premiada",
+    "city": "Pedreiras",
+    "requester": "Ricardo",
+    "completed": false,
+    "timestamp": "2025-11-03T20:35:52.801Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762202152798-907997204-ROLETA PREMIADA.docx",
+        "filename": "ROLETA PREMIADA.docx"
+      }
+    ]
   }
 ]
