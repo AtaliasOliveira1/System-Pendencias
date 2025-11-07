@@ -70,7 +70,7 @@
     "name": "Vídeo Convite - Aniversário KSS MOTOS",
     "city": "Barra do Corda",
     "requester": "Caio",
-    "completed": false,
+    "completed": true,
     "timestamp": "2025-10-29T13:10:57.784Z",
     "attachments": []
   },
@@ -244,7 +244,7 @@
     "name": "Capa tabela atacado - black friday - mês inteiro de novembro",
     "city": "Pedreiras",
     "requester": "Ricardo",
-    "completed": false,
+    "completed": true,
     "timestamp": "2025-11-03T13:30:41.095Z",
     "attachments": [
       {
@@ -257,12 +257,20 @@
     "name": "Black das Black KSS MOTOS",
     "city": "Pedreiras",
     "requester": "Ricardo",
-    "completed": false,
+    "completed": true,
     "timestamp": "2025-11-03T20:35:10.019Z",
     "attachments": [
       {
         "path": "/uploads/1762202130241-179886848-BLACK FRIDAY DAS BLACK KSS MOTOS.docx",
         "filename": "BLACK FRIDAY DAS BLACK KSS MOTOS.docx"
+      },
+      {
+        "path": "/uploads/1762343520398-798856070-BLACK FRIDAY DAS BLACK KSS MOTOS ATUALIZADA.docx",
+        "filename": "BLACK FRIDAY DAS BLACK KSS MOTOS ATUALIZADA.docx"
+      },
+      {
+        "path": "/uploads/1762343571395-250710519-Screenshot_53.png",
+        "filename": "Screenshot_53.png"
       }
     ]
   },
@@ -270,12 +278,193 @@
     "name": "Roleta Premiada",
     "city": "Pedreiras",
     "requester": "Ricardo",
-    "completed": false,
+    "completed": true,
     "timestamp": "2025-11-03T20:35:52.801Z",
     "attachments": [
       {
         "path": "/uploads/1762202152798-907997204-ROLETA PREMIADA.docx",
         "filename": "ROLETA PREMIADA.docx"
+      },
+      {
+        "path": "/uploads/1762287839960-315121770-Screenshot_52.png",
+        "filename": "Screenshot_52.png"
+      }
+    ]
+  },
+  {
+    "name": "Black friday e novembro azul",
+    "city": "Bacabal",
+    "requester": "Josenir",
+    "completed": true,
+    "timestamp": "2025-11-05T11:57:43.586Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762343863577-245180094-WhatsApp Image 2025-11-05 at 08.54.29.jpeg",
+        "filename": "WhatsApp Image 2025-11-05 at 08.54.29.jpeg"
+      }
+    ]
+  },
+  {
+    "name": "Promoção para mototáxi - R$ 84,99",
+    "city": "Grajaú",
+    "requester": "Nayana",
+    "completed": true,
+    "timestamp": "2025-11-05T12:12:22.900Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762344742872-30009440-WhatsApp Image 2025-11-05 at 09.07.16.jpeg",
+        "filename": "WhatsApp Image 2025-11-05 at 09.07.16.jpeg"
+      }
+    ]
+  },
+  {
+    "name": "Imagem de Anúncio - NOVEMBRO BLACK",
+    "city": "Presidente Dutra",
+    "requester": "Jhonata",
+    "completed": true,
+    "timestamp": "2025-11-05T14:15:41.123Z",
+    "attachments": []
+  },
+  {
+    "name": "Wallpaper Paisagem P/ Central 04 - Amarante",
+    "city": "Amarante",
+    "requester": "Diego amaral",
+    "completed": false,
+    "timestamp": "2025-11-05T18:34:36.100Z",
+    "attachments": []
+  },
+  {
+    "name": "Perfis Administrativos 1, 2 e 3",
+    "city": "Geral",
+    "requester": "Setor administrativo",
+    "completed": false,
+    "timestamp": "2025-11-05T20:02:17.151Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762428330950-849741014-Screenshot_55.png",
+        "filename": "Screenshot_55.png"
+      }
+    ]
+  },
+  {
+    "name": "Promoção de Black Friday",
+    "city": "Amarante",
+    "requester": "Luan",
+    "completed": false,
+    "timestamp": "2025-11-06T11:20:04.440Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762428004435-607039307-Screenshot_54.png",
+        "filename": "Screenshot_54.png"
+      }
+    ]
+  },
+  {
+    "name": "Sorteio para atacadistas comprando acima de R$200,00 - concorre a 1 capacete San marino",
+    "city": "Amarante",
+    "requester": "Luan",
+    "completed": false,
+    "timestamp": "2025-11-06T11:21:27.109Z",
+    "attachments": []
+  },
+  {
+    "name": "Sorteio para varejistas comprando acima de R$100,00 - concorre a 2 capacetes Gow - 1º Lugar e 2º Lugar",
+    "city": "Amarante",
+    "requester": "Luan",
+    "completed": false,
+    "timestamp": "2025-11-06T11:22:50.790Z",
+    "attachments": []
+  },
+  {
+    "name": "Cupom de sorteio Atacadista",
+    "city": "Amarante",
+    "requester": "Luan",
+    "completed": false,
+    "timestamp": "2025-11-06T12:42:38.487Z",
+    "attachments": []
+  },
+  {
+    "name": "Cupom de sorteio Varejista",
+    "city": "Amarante",
+    "requester": "Luan",
+    "completed": false,
+    "timestamp": "2025-11-06T12:42:51.646Z",
+    "attachments": []
+  },
+  {
+    "name": "⛔⚠️ PRIORIDADE!!! - Panfleto Black Friday dia 28",
+    "city": "Balsas",
+    "requester": "Gediael",
+    "completed": true,
+    "timestamp": "2025-11-06T12:45:09.513Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762433109510-540107344-Screenshot_56.png",
+        "filename": "Screenshot_56.png"
+      }
+    ]
+  },
+  {
+    "name": "Roleta Premiada - Ganhador",
+    "city": "Pedreiras",
+    "requester": "Ricardo",
+    "completed": true,
+    "timestamp": "2025-11-06T13:42:46.827Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762436566815-154292201-WhatsApp Image 2025-11-06 at 10.39.34.jpeg",
+        "filename": "WhatsApp Image 2025-11-06 at 10.39.34.jpeg"
+      }
+    ]
+  },
+  {
+    "name": "Promoção de Aniversário - 7 anos",
+    "city": "Barra do Corda",
+    "requester": "Caio",
+    "completed": false,
+    "timestamp": "2025-11-06T14:55:00.871Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762440900869-554065799-Screenshot_57.png",
+        "filename": "Screenshot_57.png"
+      },
+      {
+        "path": "/uploads/1762440913667-302585471-PROMOÃÃES DE ANIVERSÃRIO DE 7 ANOS DA KSS MOTOS DIA 26.docx",
+        "filename": "PROMOÃÃES DE ANIVERSÃRIO DE 7 ANOS DA KSS MOTOS DIA 26.docx"
+      }
+    ]
+  },
+  {
+    "name": "Ganhador da roleta premiada",
+    "city": "Pedreiras",
+    "requester": "Ricardo",
+    "completed": true,
+    "timestamp": "2025-11-06T17:18:23.000Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762449502687-514369638-41f05eec-fa5a-42d3-944f-50efceda2d84.jpg",
+        "filename": "41f05eec-fa5a-42d3-944f-50efceda2d84.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Plaquinha de aviso -mantenha distancia por segurança do mecânico",
+    "city": "Balsas",
+    "requester": "Gediael",
+    "completed": false,
+    "timestamp": "2025-11-07T12:31:01.926Z",
+    "attachments": []
+  },
+  {
+    "name": "ganhadora roleta premiada",
+    "city": "Pedreiras",
+    "requester": "Ricardo",
+    "completed": true,
+    "timestamp": "2025-11-07T12:49:35.337Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762519775099-424206860-IMG-20251107-WA0026.jpg",
+        "filename": "IMG-20251107-WA0026.jpg"
       }
     ]
   }
