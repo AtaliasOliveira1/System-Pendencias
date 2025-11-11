@@ -329,7 +329,7 @@
     "name": "Wallpaper Paisagem P/ Central 04 - Amarante",
     "city": "Amarante",
     "requester": "Diego amaral",
-    "completed": false,
+    "completed": true,
     "timestamp": "2025-11-05T18:34:36.100Z",
     "attachments": []
   },
@@ -337,7 +337,7 @@
     "name": "Perfis Administrativos 1, 2 e 3",
     "city": "Geral",
     "requester": "Setor administrativo",
-    "completed": false,
+    "completed": true,
     "timestamp": "2025-11-05T20:02:17.151Z",
     "attachments": [
       {
@@ -350,7 +350,7 @@
     "name": "Promoção de Black Friday",
     "city": "Amarante",
     "requester": "Luan",
-    "completed": false,
+    "completed": true,
     "timestamp": "2025-11-06T11:20:04.440Z",
     "attachments": [
       {
@@ -363,7 +363,7 @@
     "name": "Sorteio para atacadistas comprando acima de R$200,00 - concorre a 1 capacete San marino",
     "city": "Amarante",
     "requester": "Luan",
-    "completed": false,
+    "completed": true,
     "timestamp": "2025-11-06T11:21:27.109Z",
     "attachments": []
   },
@@ -371,7 +371,7 @@
     "name": "Sorteio para varejistas comprando acima de R$100,00 - concorre a 2 capacetes Gow - 1º Lugar e 2º Lugar",
     "city": "Amarante",
     "requester": "Luan",
-    "completed": false,
+    "completed": true,
     "timestamp": "2025-11-06T11:22:50.790Z",
     "attachments": []
   },
@@ -379,7 +379,7 @@
     "name": "Cupom de sorteio Atacadista",
     "city": "Amarante",
     "requester": "Luan",
-    "completed": false,
+    "completed": true,
     "timestamp": "2025-11-06T12:42:38.487Z",
     "attachments": []
   },
@@ -387,7 +387,7 @@
     "name": "Cupom de sorteio Varejista",
     "city": "Amarante",
     "requester": "Luan",
-    "completed": false,
+    "completed": true,
     "timestamp": "2025-11-06T12:42:51.646Z",
     "attachments": []
   },
@@ -421,7 +421,7 @@
     "name": "Promoção de Aniversário - 7 anos",
     "city": "Barra do Corda",
     "requester": "Caio",
-    "completed": false,
+    "completed": true,
     "timestamp": "2025-11-06T14:55:00.871Z",
     "attachments": [
       {
@@ -451,7 +451,7 @@
     "name": "Plaquinha de aviso -mantenha distancia por segurança do mecânico",
     "city": "Balsas",
     "requester": "Gediael",
-    "completed": false,
+    "completed": true,
     "timestamp": "2025-11-07T12:31:01.926Z",
     "attachments": []
   },
@@ -467,5 +467,159 @@
         "filename": "IMG-20251107-WA0026.jpg"
       }
     ]
+  },
+  {
+    "name": "FOTO CAIXA 01 E 02 E QR CODE WIFI",
+    "city": "Ceará & Babaçulândia",
+    "requester": "WILTON",
+    "completed": true,
+    "timestamp": "2025-11-07T15:23:47.739Z",
+    "attachments": []
+  },
+  {
+    "name": "Mudar voz dos áudio da rádio",
+    "city": "Geral",
+    "requester": "Rivaldo",
+    "completed": false,
+    "timestamp": "2025-11-10T13:19:13.722Z",
+    "attachments": []
+  },
+  {
+    "name": "Black Friday - Semana dos kits",
+    "city": "Grajaú",
+    "requester": "Nayana",
+    "completed": true,
+    "timestamp": "2025-11-10T15:05:17.687Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762787117675-398070004-WhatsApp Image 2025-11-10 at 11.05.07.jpeg",
+        "filename": "WhatsApp Image 2025-11-10 at 11.05.07.jpeg"
+      }
+    ]
+  },
+  {
+    "name": "ganhador da roleta",
+    "city": "Pedreiras",
+    "requester": "ricardo",
+    "completed": true,
+    "timestamp": "2025-11-10T15:05:49.926Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762787149902-784922367-IMG-20251110-WA0029.jpg",
+        "filename": "IMG-20251110-WA0029.jpg"
+      }
+    ]
+  },
+  {
+    "name": "ganhador da roleta",
+    "city": "Pedreiras",
+    "requester": "ricardo",
+    "completed": true,
+    "timestamp": "2025-11-10T15:06:12.002Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762787171997-457377773-IMG-20251110-WA0018.jpg",
+        "filename": "IMG-20251110-WA0018.jpg"
+      }
+    ]
+  },
+  {
+    "name": "ganhador da roleta",
+    "city": "Pedreiras",
+    "requester": "ricardo",
+    "completed": true,
+    "timestamp": "2025-11-10T15:06:39.207Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762787199177-992392691-IMG-20251110-WA0020.jpg",
+        "filename": "IMG-20251110-WA0020.jpg"
+      }
+    ]
+  },
+  {
+    "name": "logos na tabela de promoção",
+    "city": "Ceará & Babaçulândia",
+    "requester": "wilton",
+    "completed": true,
+    "timestamp": "2025-11-10T15:29:58.684Z",
+    "attachments": []
+  },
+  {
+    "name": "Foto de Parabenização - Ganhadores Corrida",
+    "city": "Amarante",
+    "requester": "Rivaldo",
+    "completed": true,
+    "timestamp": "2025-11-10T15:57:21.011Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762790240680-14356438-WhatsApp Image 2025-11-10 at 12.13.42 (1).jpeg",
+        "filename": "WhatsApp Image 2025-11-10 at 12.13.42 (1).jpeg"
+      },
+      {
+        "path": "/uploads/1762790240721-445719786-WhatsApp Image 2025-11-10 at 12.13.42.jpeg",
+        "filename": "WhatsApp Image 2025-11-10 at 12.13.42.jpeg"
+      },
+      {
+        "path": "/uploads/1762790240754-830437618-WhatsApp Video 2025-11-10 at 12.13.00.mp4",
+        "filename": "WhatsApp Video 2025-11-10 at 12.13.00.mp4"
+      },
+      {
+        "path": "/uploads/1762790240909-971312448-WhatsApp Image 2025-11-10 at 12.13.00 (2).jpeg",
+        "filename": "WhatsApp Image 2025-11-10 at 12.13.00 (2).jpeg"
+      },
+      {
+        "path": "/uploads/1762790240943-140154250-WhatsApp Image 2025-11-10 at 12.13.00 (1).jpeg",
+        "filename": "WhatsApp Image 2025-11-10 at 12.13.00 (1).jpeg"
+      },
+      {
+        "path": "/uploads/1762790240979-123375984-WhatsApp Image 2025-11-10 at 12.13.00.jpeg",
+        "filename": "WhatsApp Image 2025-11-10 at 12.13.00.jpeg"
+      }
+    ]
+  },
+  {
+    "name": "BLACK E NOVEMBRO KITS",
+    "city": "Bacabal",
+    "requester": "JOSENIR",
+    "completed": true,
+    "timestamp": "2025-11-10T16:16:19.826Z",
+    "attachments": []
+  },
+  {
+    "name": "Editar foto parabenizando jogadores patrocinado pela KSS MOTOS",
+    "city": "Amarante",
+    "requester": "RIVALDO",
+    "completed": true,
+    "timestamp": "2025-11-10T17:57:22.457Z",
+    "attachments": [
+      {
+        "path": "/uploads/1762797442434-127770676-WhatsApp Image 2025-11-10 at 13.17.00.jpeg",
+        "filename": "WhatsApp Image 2025-11-10 at 13.17.00.jpeg"
+      }
+    ]
+  },
+  {
+    "name": "separação de itens das black",
+    "city": "Pedreiras",
+    "requester": "ricardo",
+    "completed": true,
+    "timestamp": "2025-11-10T18:23:57.665Z",
+    "attachments": []
+  },
+  {
+    "name": "imagem de promoção de capacete",
+    "city": "Codó",
+    "requester": "daniel",
+    "completed": false,
+    "timestamp": "2025-11-11T14:57:59.926Z",
+    "attachments": []
+  },
+  {
+    "name": "Super Black friday Capacete Gow",
+    "city": "Geral",
+    "requester": "Rivaldo",
+    "completed": true,
+    "timestamp": "2025-11-11T15:02:36.890Z",
+    "attachments": []
   }
 ]
