@@ -477,14 +477,6 @@
     "attachments": []
   },
   {
-    "name": "Mudar voz dos áudio da rádio",
-    "city": "Geral",
-    "requester": "Rivaldo",
-    "completed": false,
-    "timestamp": "2025-11-10T13:19:13.722Z",
-    "attachments": []
-  },
-  {
     "name": "Black Friday - Semana dos kits",
     "city": "Grajaú",
     "requester": "Nayana",
@@ -610,7 +602,7 @@
     "name": "imagem de promoção de capacete",
     "city": "Codó",
     "requester": "daniel",
-    "completed": false,
+    "completed": true,
     "timestamp": "2025-11-11T14:57:59.926Z",
     "attachments": []
   },
@@ -620,6 +612,762 @@
     "requester": "Rivaldo",
     "completed": true,
     "timestamp": "2025-11-11T15:02:36.890Z",
+    "attachments": []
+  },
+  {
+    "name": "Super Black Friday - Capacete San Marino R$ 159,99 [GRUPO 01]",
+    "city": "Geral",
+    "requester": "Rivaldo",
+    "completed": true,
+    "timestamp": "2025-11-12T12:20:29.860Z",
+    "attachments": []
+  },
+  {
+    "name": "Super Black Friday - Capacete San Marino R$ 179,99 [GRUPO 02]",
+    "city": "Geral",
+    "requester": "Rivaldo",
+    "completed": true,
+    "timestamp": "2025-11-12T12:21:03.100Z",
+    "attachments": []
+  },
+  {
+    "name": "Super Black Friday - Amortecedor Cofap da Bros R$ 359,99",
+    "city": "Geral",
+    "requester": "Rivaldo",
+    "completed": true,
+    "timestamp": "2025-11-12T17:12:09.817Z",
+    "attachments": []
+  },
+  {
+    "name": "Vídeo Telão 15s - vertical - da promoção Black das Blcak",
+    "city": "Pedreiras",
+    "requester": "Ricardo",
+    "completed": true,
+    "timestamp": "2025-11-13T12:35:58.132Z",
+    "attachments": []
+  },
+  {
+    "name": "Promoção do dia 20 ao dia 29 de novembro",
+    "city": "Ceará & Babaçulândia",
+    "requester": "Fernanda",
+    "completed": true,
+    "timestamp": "2025-11-13T20:54:39.184Z",
+    "attachments": [
+      {
+        "path": "/uploads/1763067279151-702481974-WhatsApp Image 2025-11-13 at 16.11.43.jpeg.crdownload",
+        "filename": "WhatsApp Image 2025-11-13 at 16.11.43.jpeg.crdownload"
+      },
+      {
+        "path": "/uploads/1763067291723-909597956-WhatsApp Image 2025-11-13 at 16.11.43.jpeg",
+        "filename": "WhatsApp Image 2025-11-13 at 16.11.43.jpeg"
+      },
+      {
+        "path": "/uploads/1763125727470-417793764-Screenshot_59.png",
+        "filename": "Screenshot_59.png"
+      }
+    ]
+  },
+  {
+    "name": "aviso de feriado da proclamação da república",
+    "city": "Codó",
+    "requester": "vitor",
+    "completed": true,
+    "timestamp": "2025-11-14T11:51:00.217Z",
+    "attachments": []
+  },
+  {
+    "name": "Atualizar Preços Black Novembro",
+    "city": "Amarante",
+    "requester": "Rivaldo",
+    "completed": true,
+    "timestamp": "2025-11-14T13:08:05.452Z",
+    "attachments": [
+      {
+        "path": "/uploads/1763125685445-621624680-Screenshot_58.png",
+        "filename": "Screenshot_58.png"
+      }
+    ]
+  },
+  {
+    "name": "Imagem Proclamção da Republica",
+    "city": "Geral",
+    "requester": ".",
+    "completed": true,
+    "timestamp": "2025-11-14T13:09:29.425Z",
+    "attachments": []
+  },
+  {
+    "name": "Sabadou com dia da repoclamação",
+    "city": "Geral",
+    "requester": ".",
+    "completed": true,
+    "timestamp": "2025-11-14T13:09:47.866Z",
+    "attachments": []
+  },
+  {
+    "name": "Promoção todos os escapamentos esportivos",
+    "city": "Geral",
+    "requester": "Rivaldo",
+    "completed": true,
+    "timestamp": "2025-11-14T13:35:31.732Z",
+    "attachments": []
+  },
+  {
+    "name": "Aviso - Estaremo aberto",
+    "city": "Pedreiras",
+    "requester": "Ricardo",
+    "completed": true,
+    "timestamp": "2025-11-14T17:15:25.770Z",
+    "attachments": []
+  },
+  {
+    "name": "Aviso - Estaremo aberto",
+    "city": "Grajaú",
+    "requester": "Nayana",
+    "completed": true,
+    "timestamp": "2025-11-14T17:15:38.045Z",
+    "attachments": []
+  },
+  {
+    "name": "Vídeo para telão - Bom final de Semana",
+    "city": "Pedreiras",
+    "requester": "Ricardo",
+    "completed": true,
+    "timestamp": "2025-11-14T17:59:20.315Z",
+    "attachments": []
+  },
+  {
+    "name": "CRIAR VÍDEO/VT",
+    "city": "Ceará & Babaçulândia",
+    "requester": "Fernanda",
+    "completed": true,
+    "timestamp": "2025-11-17T18:11:37.300Z",
+    "attachments": [
+      {
+        "path": "/uploads/1763403097206-948210380-KSS MOTOS BLACK FRIDAY.mp3",
+        "filename": "KSS MOTOS BLACK FRIDAY.mp3"
+      }
+    ]
+  },
+  {
+    "name": "CAPA TABELA ATACADO ANIVERSARIO BARRA",
+    "city": "Barra do Corda",
+    "requester": "CAIO",
+    "completed": true,
+    "timestamp": "2025-11-18T11:45:37.949Z",
+    "attachments": []
+  },
+  {
+    "name": "Imagem Dia da conciência negra",
+    "city": "Geral",
+    "requester": ".",
+    "completed": true,
+    "timestamp": "2025-11-19T12:02:26.044Z",
+    "attachments": []
+  },
+  {
+    "name": "Convite aniversário",
+    "city": "Presidente Dutra",
+    "requester": "Jhonata",
+    "completed": true,
+    "timestamp": "2025-11-19T14:51:35.199Z",
+    "attachments": [
+      {
+        "path": "/uploads/1763563895186-672874625-WhatsApp Image 2025-11-19 at 11.43.10.jpeg",
+        "filename": "WhatsApp Image 2025-11-19 at 11.43.10.jpeg"
+      }
+    ]
+  },
+  {
+    "name": "aviso feriado dia 20/11",
+    "city": "Codó",
+    "requester": "daniel",
+    "completed": true,
+    "timestamp": "2025-11-19T18:15:55.159Z",
+    "attachments": []
+  },
+  {
+    "name": "aviso feriado dia 20/11",
+    "city": "Pedreiras",
+    "requester": "ricardo",
+    "completed": true,
+    "timestamp": "2025-11-19T18:16:33.258Z",
+    "attachments": []
+  },
+  {
+    "name": "aviso feriado dia 20/11",
+    "city": "Barra do Corda",
+    "requester": "caio",
+    "completed": true,
+    "timestamp": "2025-11-19T18:17:49.102Z",
+    "attachments": []
+  },
+  {
+    "name": "Dia 24/11 a 29/11 toda semana na Black das Black kss motos.",
+    "city": "Grajaú",
+    "requester": "Nayana",
+    "completed": true,
+    "timestamp": "2025-11-21T12:55:08.492Z",
+    "attachments": []
+  },
+  {
+    "name": "Arte redonda aniversário KSS MOTOS",
+    "city": "Presidente Dutra",
+    "requester": "Jhonata",
+    "completed": true,
+    "timestamp": "2025-11-21T12:55:43.465Z",
+    "attachments": []
+  },
+  {
+    "name": "Black das Black promoção",
+    "city": "Grajaú",
+    "requester": "Nayana",
+    "completed": true,
+    "timestamp": "2025-11-21T16:34:39.851Z",
+    "attachments": [
+      {
+        "path": "/uploads/1763742879750-598191239-WhatsApp Image 2025-11-21 at 11.25.34.jpeg",
+        "filename": "WhatsApp Image 2025-11-21 at 11.25.34.jpeg"
+      }
+    ]
+  },
+  {
+    "name": "SABADOU",
+    "city": "Geral",
+    "requester": ".",
+    "completed": true,
+    "timestamp": "2025-11-21T17:57:55.068Z",
+    "attachments": []
+  },
+  {
+    "name": "ESQUENTA BLACK FRIDAY",
+    "city": "Presidente Dutra",
+    "requester": "Jhonata",
+    "completed": true,
+    "timestamp": "2025-11-24T13:13:31.614Z",
+    "attachments": [
+      {
+        "path": "/uploads/1763990002305-796476746-ESQUENTA BLACK FRIDAY.docx",
+        "filename": "ESQUENTA BLACK FRIDAY.docx"
+      }
+    ]
+  },
+  {
+    "name": "ESQUENTA BLACK FRIDAY - ANIVERSÁRIO KSS MOTOS",
+    "city": "Presidente Dutra",
+    "requester": "Jhonata",
+    "completed": true,
+    "timestamp": "2025-11-24T13:14:27.132Z",
+    "attachments": [
+      {
+        "path": "/uploads/1763990057674-954073398-ESQUENTA BLACK FRIDAY.docx",
+        "filename": "ESQUENTA BLACK FRIDAY.docx"
+      }
+    ]
+  },
+  {
+    "name": "black das black",
+    "city": "Açailândia",
+    "requester": "daniel",
+    "completed": true,
+    "timestamp": "2025-11-25T12:11:33.186Z",
+    "attachments": []
+  },
+  {
+    "name": "Atualizar Senhas 2026",
+    "city": "Geral",
+    "requester": ".",
+    "completed": true,
+    "timestamp": "2025-11-26T11:09:45.922Z",
+    "attachments": []
+  },
+  {
+    "name": "Imagem amortecedor bros",
+    "city": "Geral",
+    "requester": "Rivaldo",
+    "completed": true,
+    "timestamp": "2025-11-26T11:10:15.953Z",
+    "attachments": []
+  },
+  {
+    "name": "QR CODE WIFI",
+    "city": "Bacabal",
+    "requester": "JOSENIR",
+    "completed": true,
+    "timestamp": "2025-11-26T11:48:00.427Z",
+    "attachments": []
+  },
+  {
+    "name": "Áudios Black Friday para Rádio",
+    "city": "Geral",
+    "requester": "Rivaldo",
+    "completed": true,
+    "timestamp": "2025-11-26T14:31:32.325Z",
+    "attachments": []
+  },
+  {
+    "name": "Black friday em Óleos do Motor",
+    "city": "Açailândia",
+    "requester": "Daniel",
+    "completed": true,
+    "timestamp": "2025-11-27T14:41:01.265Z",
+    "attachments": [
+      {
+        "path": "/uploads/1764254461252-5380989-Screenshot_62.png",
+        "filename": "Screenshot_62.png"
+      }
+    ]
+  },
+  {
+    "name": "Black Friday com café",
+    "city": "Sítio Novo",
+    "requester": "Jardel",
+    "completed": true,
+    "timestamp": "2025-11-27T14:44:10.088Z",
+    "attachments": []
+  },
+  {
+    "name": "Dia 28 teremos um delicioso café da manhã para receber você com aquele carinho especial. E mais: nas compras a partir de R$150,00, você estoura um balão premiado com vários brindes incríveis durante todo o dia!  RUA CEARÁ, JUÇARA, Nº424 E AVENIDA PEDRO NEIVA DE SANTANA, Nº898.",
+    "city": "Ceará & Babaçulândia",
+    "requester": "Fernanda",
+    "completed": true,
+    "timestamp": "2025-11-27T14:44:37.603Z",
+    "attachments": []
+  },
+  {
+    "name": "último SABADOU do mês e com promoções da black",
+    "city": "Geral",
+    "requester": "Rivaldo",
+    "completed": true,
+    "timestamp": "2025-11-28T12:37:57.552Z",
+    "attachments": []
+  },
+  {
+    "name": "Editar vídeo do Sorteio de aniversário KSS MOTOS",
+    "city": "Barra do Corda",
+    "requester": ".]",
+    "completed": true,
+    "timestamp": "2025-12-01T15:04:39.198Z",
+    "attachments": []
+  },
+  {
+    "name": "Editar vídeo do Sorteio de aniversário KSS MOTOS",
+    "city": "Barra do Corda",
+    "requester": ".",
+    "completed": true,
+    "timestamp": "2025-12-01T15:09:58.276Z",
+    "attachments": []
+  },
+  {
+    "name": "Vídeo para telão",
+    "city": "Pedreiras",
+    "requester": "Ricardo",
+    "completed": true,
+    "timestamp": "2025-12-01T15:47:58.234Z",
+    "attachments": []
+  },
+  {
+    "name": "Mudar data promoção do óleo",
+    "city": "Pedreiras",
+    "requester": "Ricardo",
+    "completed": true,
+    "timestamp": "2025-12-02T13:15:01.612Z",
+    "attachments": []
+  },
+  {
+    "name": "Editar vídeo sorteio",
+    "city": "Presidente Dutra",
+    "requester": "Jhonata",
+    "completed": true,
+    "timestamp": "2025-12-02T13:16:34.510Z",
+    "attachments": []
+  },
+  {
+    "name": "Editar vídeo sorteio",
+    "city": "Amarante",
+    "requester": "Rivaldo",
+    "completed": true,
+    "timestamp": "2025-12-02T13:16:44.295Z",
+    "attachments": []
+  },
+  {
+    "name": "Editar foto ganhador 200 em dinheiro",
+    "city": "Presidente Dutra",
+    "requester": "Jhonata",
+    "completed": true,
+    "timestamp": "2025-12-02T13:16:57.393Z",
+    "attachments": []
+  },
+  {
+    "name": "Promoção Natal Premiado",
+    "city": "Pedreiras",
+    "requester": "Ricardo",
+    "completed": true,
+    "timestamp": "2025-12-02T13:17:39.296Z",
+    "attachments": [
+      {
+        "path": "/uploads/1764681459290-648566917-PROMOÃÃO NATAL PREMIADO.docx",
+        "filename": "PROMOÃÃO NATAL PREMIADO.docx"
+      },
+      {
+        "path": "/uploads/1764794511182-762370034-DEZEMBROPREMIADOKSS MOTOS (1).docx",
+        "filename": "DEZEMBROPREMIADOKSS MOTOS (1).docx"
+      }
+    ]
+  },
+  {
+    "name": "Cupom para sorteio Varejo e Atacado",
+    "city": "Balsas",
+    "requester": "Gediael",
+    "completed": true,
+    "timestamp": "2025-12-02T13:30:35.583Z",
+    "attachments": []
+  },
+  {
+    "name": "Editar vídeo ganhador sorteio",
+    "city": "Ceará & Babaçulândia",
+    "requester": "Fernanda",
+    "completed": true,
+    "timestamp": "2025-12-02T18:15:47.138Z",
+    "attachments": []
+  },
+  {
+    "name": "dezembro de ofertas",
+    "city": "Ceará & Babaçulândia",
+    "requester": "wilton",
+    "completed": true,
+    "timestamp": "2025-12-03T12:38:36.702Z",
+    "attachments": []
+  },
+  {
+    "name": "Imagem informando vagas de emprego - Conferente, Estoquista, Vendedor e Serviços Gerais",
+    "city": "Balsas",
+    "requester": "Gediael",
+    "completed": true,
+    "timestamp": "2025-12-03T14:57:51.762Z",
+    "attachments": []
+  },
+  {
+    "name": "DEZEMBRO DE OFERTAS",
+    "city": "Açailândia",
+    "requester": "DANIEL",
+    "completed": true,
+    "timestamp": "2025-12-03T16:28:44.578Z",
+    "attachments": []
+  },
+  {
+    "name": "IMAGEM DE CONFRATERNIZAÇÃO",
+    "city": "Pedreiras",
+    "requester": "RICARDO",
+    "completed": true,
+    "timestamp": "2025-12-03T16:29:17.813Z",
+    "attachments": []
+  },
+  {
+    "name": "Vale cupom sorteio para TV",
+    "city": "Ceará & Babaçulândia",
+    "requester": "Fernanda",
+    "completed": true,
+    "timestamp": "2025-12-03T18:13:00.886Z",
+    "attachments": []
+  },
+  {
+    "name": "Criar vídeo promoção - VT",
+    "city": "Ceará & Babaçulândia",
+    "requester": "Wilton",
+    "completed": true,
+    "timestamp": "2025-12-03T20:59:58.396Z",
+    "attachments": []
+  },
+  {
+    "name": "Para imprimir - Nome Sorteio Atacadista e Sorteio Varejista",
+    "city": "Balsas",
+    "requester": "Gediael",
+    "completed": true,
+    "timestamp": "2025-12-04T11:19:39.551Z",
+    "attachments": []
+  },
+  {
+    "name": "Editar Vídeo Sorteio da Ceará",
+    "city": "Ceará & Babaçulândia",
+    "requester": "Wilton/Thayná",
+    "completed": true,
+    "timestamp": "2025-12-04T11:20:37.213Z",
+    "attachments": []
+  },
+  {
+    "name": "PROMOÇÃO FINAL DE ANO KSS MOTOS 💥💥",
+    "city": "Amarante",
+    "requester": "Rivaldo",
+    "completed": true,
+    "timestamp": "2025-12-04T12:18:21.580Z",
+    "attachments": [
+      {
+        "path": "/uploads/1764863535925-406921512-Screenshot_63.png",
+        "filename": "Screenshot_63.png"
+      }
+    ]
+  },
+  {
+    "name": "SORTEIO FINAL DE ANO KSS MOTOS",
+    "city": "Amarante",
+    "requester": "Rivaldo",
+    "completed": true,
+    "timestamp": "2025-12-04T12:18:36.021Z",
+    "attachments": []
+  },
+  {
+    "name": "Editar foto Ganhador do sorteio de novembro",
+    "city": "Amarante",
+    "requester": "Rivaldo",
+    "completed": true,
+    "timestamp": "2025-12-04T12:18:57.167Z",
+    "attachments": []
+  },
+  {
+    "name": "Imagem Sorteio caixa de óleo",
+    "city": "Balsas",
+    "requester": "Gediael",
+    "completed": true,
+    "timestamp": "2025-12-04T13:58:36.424Z",
+    "attachments": []
+  },
+  {
+    "name": "PROMOÇÃO FINAL DE ANO",
+    "city": "Bacabal",
+    "requester": "JOSENIR",
+    "completed": true,
+    "timestamp": "2025-12-05T12:15:02.763Z",
+    "attachments": []
+  },
+  {
+    "name": "OFERTA RELÂMPAGO",
+    "city": "Pedreiras",
+    "requester": "RICARDO",
+    "completed": true,
+    "timestamp": "2025-12-05T12:15:29.610Z",
+    "attachments": []
+  },
+  {
+    "name": "CUPOM DO SORTEIO CAIXA DE OLEO",
+    "city": "Pedreiras",
+    "requester": "RICARDO",
+    "completed": true,
+    "timestamp": "2025-12-05T12:52:03.072Z",
+    "attachments": []
+  },
+  {
+    "name": "CUPOM DO SORTEIO DA CESTA DE PREMIOS",
+    "city": "Pedreiras",
+    "requester": "RICARDO",
+    "completed": true,
+    "timestamp": "2025-12-05T12:52:28.682Z",
+    "attachments": []
+  },
+  {
+    "name": "Vídeo para telão da prmoção de dezembro",
+    "city": "Pedreiras",
+    "requester": "Ricardo",
+    "completed": true,
+    "timestamp": "2025-12-05T13:31:48.319Z",
+    "attachments": []
+  },
+  {
+    "name": "IMAGEM DO 3° GANHADOR  ANIVERSARIO",
+    "city": "Barra do Corda",
+    "requester": "CAIO",
+    "completed": true,
+    "timestamp": "2025-12-05T17:59:55.618Z",
+    "attachments": []
+  },
+  {
+    "name": "Promoção de dezembro",
+    "city": "Presidente Dutra",
+    "requester": "Jhonata",
+    "completed": true,
+    "timestamp": "2025-12-05T18:19:54.125Z",
+    "attachments": [
+      {
+        "path": "/uploads/1764958794084-590377240-WhatsApp Image 2025-12-05 at 11.16.24.jpeg",
+        "filename": "WhatsApp Image 2025-12-05 at 11.16.24.jpeg"
+      }
+    ]
+  },
+  {
+    "name": "Sorteio Fim De Ano",
+    "city": "Presidente Dutra",
+    "requester": "Jhonata",
+    "completed": true,
+    "timestamp": "2025-12-05T18:20:15.438Z",
+    "attachments": [
+      {
+        "path": "/uploads/1764958815436-387726737-WhatsApp Image 2025-12-05 at 15.18.15.jpeg",
+        "filename": "WhatsApp Image 2025-12-05 at 15.18.15.jpeg"
+      }
+    ]
+  },
+  {
+    "name": "PROMOÇÃO FINAL DE ANO",
+    "city": "Balsas",
+    "requester": "Gediael",
+    "completed": true,
+    "timestamp": "2025-12-05T18:27:02.521Z",
+    "attachments": [
+      {
+        "path": "/uploads/1764959222518-402978131-Screenshot_65.png",
+        "filename": "Screenshot_65.png"
+      }
+    ]
+  },
+  {
+    "name": "Criar imagem de feriado até 12h",
+    "city": "Barra do Corda",
+    "requester": "Caio",
+    "completed": true,
+    "timestamp": "2025-12-05T20:49:39.131Z",
+    "attachments": []
+  },
+  {
+    "name": "Sorteio de fim de ano",
+    "city": "Ceará & Babaçulândia",
+    "requester": "Fernanda",
+    "completed": true,
+    "timestamp": "2025-12-06T14:41:02.180Z",
+    "attachments": [
+      {
+        "path": "/uploads/1765032062172-109383202-Screenshot_3.png",
+        "filename": "Screenshot_3.png"
+      }
+    ]
+  },
+  {
+    "name": "CUPOM SORTEIO VAREJISTAS",
+    "city": "Presidente Dutra",
+    "requester": "JHONATA",
+    "completed": true,
+    "timestamp": "2025-12-09T12:28:45.979Z",
+    "attachments": []
+  },
+  {
+    "name": "PROMOÇÃO VAREJISTAS FIM DE ANO",
+    "city": "Presidente Dutra",
+    "requester": "JHONAT4",
+    "completed": true,
+    "timestamp": "2025-12-09T12:29:17.236Z",
+    "attachments": []
+  },
+  {
+    "name": "PROMOÇÃO DE FIM DE ANO",
+    "city": "Presidente Dutra",
+    "requester": "JHONAT4",
+    "completed": true,
+    "timestamp": "2025-12-09T13:18:23.659Z",
+    "attachments": []
+  },
+  {
+    "name": "CUPOM ATACADISTAS",
+    "city": "Presidente Dutra",
+    "requester": "JHONAT4",
+    "completed": true,
+    "timestamp": "2025-12-09T13:18:57.852Z",
+    "attachments": []
+  },
+  {
+    "name": "Arte Capa de Chuva",
+    "city": "Ceará & Babaçulândia",
+    "requester": "Daniel",
+    "completed": true,
+    "timestamp": "2025-12-09T13:34:07.580Z",
+    "attachments": []
+  },
+  {
+    "name": "Editar vídeo promoção Audio",
+    "city": "Balsas",
+    "requester": "Gediael",
+    "completed": true,
+    "timestamp": "2025-12-09T13:47:15.959Z",
+    "attachments": []
+  },
+  {
+    "name": "Cupom sorteio",
+    "city": "Ceará & Babaçulândia",
+    "requester": "Fernanda",
+    "completed": true,
+    "timestamp": "2025-12-09T14:09:58.279Z",
+    "attachments": []
+  },
+  {
+    "name": "Estoura Balão",
+    "city": "Amarante",
+    "requester": "Luan",
+    "completed": true,
+    "timestamp": "2025-12-09T14:53:42.585Z",
+    "attachments": [
+      {
+        "path": "/uploads/1765373492349-752476375-Screenshot_4.png",
+        "filename": "Screenshot_4.png"
+      }
+    ]
+  },
+  {
+    "name": "OFERTAS DE DEZEMBRO",
+    "city": "Codó",
+    "requester": "DANIEL",
+    "completed": true,
+    "timestamp": "2025-12-09T16:54:33.544Z",
+    "attachments": []
+  },
+  {
+    "name": "ESTOURA BALÃO",
+    "city": "Bacabal",
+    "requester": "JOSENIR",
+    "completed": false,
+    "timestamp": "2025-12-09T16:54:46.647Z",
+    "attachments": []
+  },
+  {
+    "name": "Promoção de dezembro",
+    "city": "Grajaú",
+    "requester": "Ricardo",
+    "completed": true,
+    "timestamp": "2025-12-10T11:10:25.083Z",
+    "attachments": [
+      {
+        "path": "/uploads/1765365025049-539402023-WhatsApp Image 2025-12-09 at 13.21.12.jpeg",
+        "filename": "WhatsApp Image 2025-12-09 at 13.21.12.jpeg"
+      }
+    ]
+  },
+  {
+    "name": "dezembro em combos",
+    "city": "Codó",
+    "requester": "victor",
+    "completed": true,
+    "timestamp": "2025-12-10T14:02:40.685Z",
+    "attachments": []
+  },
+  {
+    "name": "Criar vídeo e imagem, pneus novos",
+    "city": "Geral",
+    "requester": ".",
+    "completed": false,
+    "timestamp": "2025-12-10T16:13:07.255Z",
+    "attachments": []
+  },
+  {
+    "name": "Sorteio mes de dezembro",
+    "city": "Balsas",
+    "requester": "Gediael",
+    "completed": false,
+    "timestamp": "2025-12-10T18:10:51.556Z",
+    "attachments": []
+  },
+  {
+    "name": "GANHADOR ESTOURA BALÃO",
+    "city": "Bacabal",
+    "requester": "JOSENIR",
+    "completed": true,
+    "timestamp": "2025-12-10T18:20:36.779Z",
     "attachments": []
   }
 ]

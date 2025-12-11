@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  pendencias:
+    build: .
+    container_name: sistema-pendencias
+    ports:
+      - "80:4000"
+    mem_limit: 512m
+    restart: always
+    volumes:
+      - ./uploads:/usr/src/app/uploads

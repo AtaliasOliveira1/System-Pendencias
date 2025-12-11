@@ -1,14 +1,15 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const chalk = require('chalk');
+// const chalk = require('chalk'); <--- REMOVIDO: Será carregado dinamicamente
 const multer = require('multer');
 
 // ⬅️ NOVO: Imports para Socket.IO
 const http = require('http'); 
 const { Server } = require('socket.io'); 
 
-const chalkInstance = chalk.default || chalk;
+// Variável que irá segurar a referência correta do chalk
+let chalk; 
 
 const app = express();
 const PORT = 4000;
@@ -30,6 +31,7 @@ const io = new Server(server, {
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         const uploadPath = path.join(__dirname, 'uploads');
+        // Usando o fs.promises.mkdir para suportar async/await
         if (!fs.existsSync(uploadPath)) {
             fs.mkdirSync(uploadPath);
         }
@@ -55,7 +57,8 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Log de conexão do Socket.IO
 io.on('connection', (socket) => {
-    console.log(chalkInstance.magenta('👤 Novo usuário conectado via Socket.IO'));
+    // Usando 'chalk' no lugar de 'chalkInstance'
+    console.log(chalk.magenta('👤 Novo usuário conectado via Socket.IO'));
 });
 
 // ----------------------------------------------------
@@ -66,14 +69,16 @@ io.on('connection', (socket) => {
 app.get('/tasks', (req, res) => {
     fs.readFile('pendencias.json', 'utf8', (err, data) => {
         if (err) {
-            console.error(chalkInstance.red('❌ ERRO ao ler o arquivo de pendências:'), err.message);
+            // Usando 'chalk'
+            console.error(chalk.red('❌ ERRO ao ler o arquivo de pendências:'), err.message);
             if (err.code === 'ENOENT') {
                 return res.json([]);
             }
             return res.status(500).json({ error: 'Erro ao ler o arquivo' });
         }
         res.json(JSON.parse(data || '[]'));
-        console.log(chalkInstance.green('📦 Pendências carregadas!'));
+        // Usando 'chalk'
+        console.log(chalk.green('📦 Pendências carregadas!'));
     });
 });
 
@@ -82,7 +87,8 @@ app.delete('/tasks/:name', (req, res) => {
     const taskName = req.params.name;
     fs.readFile('pendencias.json', 'utf8', (err, data) => {
         if (err) {
-            console.error(chalkInstance.red('❌ ERRO ao ler o arquivo para deletar:'), err.message);
+            // Usando 'chalk'
+            console.error(chalk.red('❌ ERRO ao ler o arquivo para deletar:'), err.message);
             return res.status(500).json({ error: 'Erro ao ler o arquivo' });
         }
         let tasks = JSON.parse(data || '[]');
@@ -91,14 +97,17 @@ app.delete('/tasks/:name', (req, res) => {
         
         fs.writeFile('pendencias.json', JSON.stringify(tasks, null, 2), (err) => {
             if (err) {
-                console.error(chalkInstance.red('❌ ERRO ao deletar a tarefa:'), err.message);
+                // Usando 'chalk'
+                console.error(chalk.red('❌ ERRO ao deletar a tarefa:'), err.message);
                 return res.status(500).json({ error: 'Erro ao deletar a tarefa' });
             }
             if (tasks.length < initialLength) {
-                console.log(chalkInstance.yellow(`🗑️ Pendência "${taskName}" deletada!`));
+                // Usando 'chalk'
+                console.log(chalk.yellow(`🗑️ Pendência "${taskName}" deletada!`));
                 io.emit('task_deleted', taskName); // ⬅️ EMITE
             } else {
-                 console.log(chalkInstance.red(`⚠️ Tentativa de deletar pendência não encontrada: "${taskName}"`));
+                 // Usando 'chalk'
+                 console.log(chalk.red(`⚠️ Tentativa de deletar pendência não encontrada: "${taskName}"`));
             }
             res.status(204).send();
         });
@@ -109,11 +118,13 @@ app.delete('/tasks/:name', (req, res) => {
 app.delete('/tasks/clear-all', (req, res) => {
     fs.writeFile('pendencias.json', JSON.stringify([], null, 2), (err) => {
         if (err) {
-            console.error(chalkInstance.red('❌ ERRO ao limpar todas as pendências:'), err.message);
+            // Usando 'chalk'
+            console.error(chalk.red('❌ ERRO ao limpar todas as pendências:'), err.message);
             return res.status(500).json({ error: 'Erro ao atualizar o arquivo' });
         }
         res.status(204).send();
-        console.log(chalkInstance.magenta('✨ Todas as Pendências Limpas!'));
+        // Usando 'chalk'
+        console.log(chalk.magenta('✨ Todas as Pendências Limpas!'));
         io.emit('tasks_cleared'); // ⬅️ EMITE
     });
 });
@@ -125,7 +136,8 @@ app.put('/tasks/:name', (req, res) => {
 
     fs.readFile('pendencias.json', 'utf8', (err, data) => {
         if (err) {
-            console.error(chalkInstance.red('❌ ERRO ao ler o arquivo para atualizar:'), err.message);
+            // Usando 'chalk'
+            console.error(chalk.red('❌ ERRO ao ler o arquivo para atualizar:'), err.message);
             return res.status(500).json({ error: 'Erro ao ler o arquivo' });
         }
         let tasks = JSON.parse(data || '[]');
@@ -144,14 +156,17 @@ app.put('/tasks/:name', (req, res) => {
 
         fs.writeFile('pendencias.json', JSON.stringify(tasks, null, 2), (err) => {
             if (err) {
-                console.error(chalkInstance.red('❌ ERRO ao atualizar a tarefa:'), err.message);
+                // Usando 'chalk'
+                console.error(chalk.red('❌ ERRO ao atualizar a tarefa:'), err.message);
                 return res.status(500).json({ error: 'Erro ao atualizar a tarefa' });
             }
             if (taskFound) {
-                console.log(chalkInstance.blue(`✅ Pendência "${taskName}" atualizada!`));
+                // Usando 'chalk'
+                console.log(chalk.blue(`✅ Pendência "${taskName}" atualizada!`));
                 io.emit('task_updated', finalUpdatedTask); // ⬅️ EMITE
             } else {
-                console.log(chalkInstance.red(`⚠️ Tentativa de atualizar pendência não encontrada: "${taskName}"`));
+                // Usando 'chalk'
+                console.log(chalk.red(`⚠️ Tentativa de atualizar pendência não encontrada: "${taskName}"`));
             }
             res.json(finalUpdatedTask);
         });
@@ -180,7 +195,8 @@ app.post('/tasks-with-file', upload.array('attachments', 10), (req, res) => {
 
     fs.readFile('pendencias.json', 'utf8', (err, data) => {
         if (err && err.code !== 'ENOENT') {
-            console.error(chalkInstance.red('❌ ERRO ao ler o arquivo para adicionar:'), err.message);
+            // Usando 'chalk'
+            console.error(chalk.red('❌ ERRO ao ler o arquivo para adicionar:'), err.message);
             return res.status(500).json({ error: 'Erro ao ler o arquivo' });
         }
         const tasks = JSON.parse(data || '[]');
@@ -188,14 +204,16 @@ app.post('/tasks-with-file', upload.array('attachments', 10), (req, res) => {
         
         fs.writeFile('pendencias.json', JSON.stringify(tasks, null, 2), (err) => {
             if (err) {
-                console.error(chalkInstance.red('❌ ERRO ao salvar a tarefa:'), err.message);
+                // Usando 'chalk'
+                console.error(chalk.red('❌ ERRO ao salvar a tarefa:'), err.message);
                 return res.status(500).json({ error: 'Erro ao salvar a tarefa' });
             }
             
             io.emit('task_created', newTask); // ⬅️ EMITE
 
             res.status(201).json(newTask);
-            console.log(chalkInstance.cyan(`➕ Nova Pendência Adicionada: ${newTask.name} (${newTask.city}) com ${attachments.length} Anexo(s)`));
+            // Usando 'chalk'
+            console.log(chalk.cyan(`➕ Nova Pendência Adicionada: ${newTask.name} (${newTask.city}) com ${attachments.length} Anexo(s)`));
         });
     });
 });
@@ -213,7 +231,8 @@ app.post('/tasks/:name/attach', upload.array('attachments', 10), (req, res) => {
 
     fs.readFile('pendencias.json', 'utf8', (err, data) => {
         if (err) {
-            console.error(chalkInstance.red('❌ ERRO ao ler o arquivo para anexar:'), err.message);
+            // Usando 'chalk'
+            console.error(chalk.red('❌ ERRO ao ler o arquivo para anexar:'), err.message);
             return res.status(500).json({ error: 'Erro ao ler o arquivo' });
         }
         let tasks = JSON.parse(data || '[]');
@@ -237,20 +256,40 @@ app.post('/tasks/:name/attach', upload.array('attachments', 10), (req, res) => {
 
         fs.writeFile('pendencias.json', JSON.stringify(tasks, null, 2), (err) => {
             if (err) {
-                console.error(chalkInstance.red('❌ ERRO ao anexar arquivo à tarefa:'), err.message);
+                // Usando 'chalk'
+                console.error(chalk.red('❌ ERRO ao anexar arquivo à tarefa:'), err.message);
                 return res.status(500).json({ error: 'Erro ao salvar o anexo.' });
             }
             
             io.emit('task_updated', updatedTask); // ⬅️ EMITE
 
-            console.log(chalkInstance.blue(`📎 ${newAttachments.length} anexo(s) adicionados à pendência "${taskName}"`));
+            // Usando 'chalk'
+            console.log(chalk.blue(`📎 ${newAttachments.length} anexo(s) adicionados à pendência "${taskName}"`));
             res.status(200).json(updatedTask);
         });
     });
 });
 
+// ----------------------------------------------------------------------------------
+// NOVO: Função assíncrona para iniciar o servidor e carregar o CHALK
+// ----------------------------------------------------------------------------------
 
-// ⬅️ MUDANÇA: Usa server.listen
-server.listen(PORT, () => {
-    console.log(chalkInstance.green(`\n🚀 Servidor KSS MOTOS rodando em http://localhost:${PORT}\n`));
-});
+async function startServer() {
+    try {
+        // Carrega o chalk (ESM) dinamicamente dentro do CommonJS
+        const chalkModule = await import('chalk');
+        // Pega a referência correta (CommonJS geralmente usa .default)
+        chalk = chalkModule.default || chalkModule; 
+
+        // ⬅️ MUDANÇA: Usa server.listen
+        server.listen(PORT, () => {
+            // Usa 'chalk' após ter sido carregado
+            console.log(chalk.green(`\n🚀 Servidor KSS MOTOS rodando em http://localhost:${PORT}\n`));
+        });
+    } catch (error) {
+        console.error("❌ ERRO FATAL ao iniciar o servidor (Falha ao carregar o Chalk):", error);
+    }
+}
+
+// Inicia o servidor
+startServer();
